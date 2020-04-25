@@ -26,7 +26,7 @@ author:
 
 # Fallback image and color
 image: /assets/img/nap.jpg
-color: "#FF8181"
+color: "#9ba3e8"
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 font_heading: "'Lato', 'Sans-serif'"
@@ -46,7 +46,7 @@ google_fonts: Lato
 google_analytics: UA-164581379-1
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
-disqus_shortname: mmirann
+#disqus_shortname: mmirann
 
 # This text will appear in the footer of every page. Markdown enabled.
 copyright: "&copy; 2020. by mmirann"
