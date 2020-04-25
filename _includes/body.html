@@ -25,6 +25,7 @@
       {{ content }}
       <h2>Comments</h2>
       <hr />
+      {% if page.layout == 'post' %}
       <script
         src="https://utteranc.es/client.js"
         repo="mmirann/blog-comment"
@@ -33,9 +34,8 @@
         crossorigin="anonymous"
         async
       ></script>
-      <!-- {% if page.layout == 'post' %} {% include comments.html %}
-      {% endif %} -->
-      {% include footer.html %}
+      <!--  {% include comments.html %} -->
+      {% endif %} {% include footer.html %}
     </main>
     {% include right-side.html %}
   </div>
