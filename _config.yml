@@ -30,11 +30,11 @@ color: "#9ba3e8"
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 # font_heading: "'Lato', 'Sans-serif'"
-font_heading: "'Nanum Gothic', 'sans-serif'"
+font_heading: "'Nanum Gothic', sans-serif"
 
 # The text font. Expects a string that is a valid CSS font-family value.
 # font: "'Lato', 'Sans-serif'"
-font: "'Nanum Gothic', 'sans-serif'"
+font: "'Nanum Gothic', sans-serif"
 
 # The string encoding what fonts to fetch from Google Fonts.
 # See: https://qwtel.com/hydejack/docs/configuration/
