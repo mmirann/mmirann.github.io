@@ -23,11 +23,16 @@
       data-image="{{ image | escape }}"
     >
       {{ content }}
-
-      <!-- {% if site.disqus_shortname and page.layout == 'post' %} -->
-      {% include comments.html %}
-      <!-- {% endif %}  -->
-
+      <script
+        src="https://utteranc.es/client.js"
+        repo="mmirann/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+      <!-- {% if page.layout == 'post' %} {% include comments.html %}
+      {% endif %} -->
       {% include footer.html %}
     </main>
     {% include right-side.html %}
