@@ -1,0 +1,9 @@
+---
+layout: tag-blog
+title: Algorithm
+slug: algorithm
+category: devlog
+menu: false
+order: 1
+#head-img:
+---
