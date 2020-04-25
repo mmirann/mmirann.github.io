@@ -22,10 +22,9 @@
       data-color="{{ color | escape }}"
       data-image="{{ image | escape }}"
     >
-      {{ content }}
+      {{ content }} {% if page.layout == 'post' %}
       <h2>Comments</h2>
       <hr />
-      {% if page.layout == 'post' %}
       <script
         src="https://utteranc.es/client.js"
         repo="mmirann/blog-comment"
@@ -34,7 +33,7 @@
         crossorigin="anonymous"
         async
       ></script>
-      <!--  {% include comments.html %} -->
+      <!-- {% include comments.html %} -->
       {% endif %} {% include footer.html %}
     </main>
     {% include right-side.html %}
