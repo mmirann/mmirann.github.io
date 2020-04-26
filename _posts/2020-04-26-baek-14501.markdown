@@ -9,8 +9,6 @@ comments: true
 
 > DP, DFS
 
----
-
 # 문제
 
 ---
@@ -101,7 +99,7 @@ DP[i + T[i]] = max(DP[i + T[i]], DP[i] + P[i]);
 
 ---
 
-```C++
+```c
 #include <iostream>
 #include <stdio.h>
 using namespace std;
