@@ -2,7 +2,7 @@
 layout: post
 title: "깃허브 블로그 개설"
 subtitle: ""
-categories: memo
+categories: Memo
 tags:
 comments: false
 ---
