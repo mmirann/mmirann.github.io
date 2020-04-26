@@ -75,7 +75,7 @@
 
 
 .markdown-body code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'Nanum Gothic',Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
 }
 
@@ -94,12 +94,12 @@
 }
 
 .markdown-body code {
-  color: #E53A40;
+  color: rgb(98, 0, 255);
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   margin: 0;
-  font-size: 85%;
+  font-size: 90%;
   background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
 }
