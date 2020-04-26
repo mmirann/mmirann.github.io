@@ -4,7 +4,7 @@ title: Scrap
 slug: doc
 menu: true
 submenu: false
-order: 2
+order: 5
 description: >
-  기사 스크랩
+  스크랩
 ---
