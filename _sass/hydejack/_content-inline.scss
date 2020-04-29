@@ -15,11 +15,11 @@
   }
 
   @media screen and (min-width: $break-point-3) {
-    max-width: 70rem;
+    max-width: 42rem;
     margin-left: 21rem;
   }
 
-  @media screen and (min-width: $break-point-3) {
+  @media screen and (min-width: $break-point-4) {
     float: left;
     width: 100%;
     margin-left: 22rem;
@@ -27,7 +27,7 @@
   }
 
   @media screen and (min-width: $break-point-5) {
-    max-width: 70rem;
+    max-width: 44rem;
   }
 
   @media screen and (min-width: $break-point-dynamic) {
