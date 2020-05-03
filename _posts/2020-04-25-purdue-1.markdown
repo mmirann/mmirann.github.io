@@ -11,7 +11,7 @@ comments: true
 
 ---
 
-## IITP K-SW Square Purdue Program 가을학기 합격기, 후기 <!-- omit in toc-->
+## IITP K-SW Square Purdue Program 가을학기 합격기, 후기
 - [지원](#%ec%a7%80%ec%9b%90)
   - [교내 선발](#%ea%b5%90%eb%82%b4-%ec%84%a0%eb%b0%9c)
   - [IITP 선발](#iitp-%ec%84%a0%eb%b0%9c)
