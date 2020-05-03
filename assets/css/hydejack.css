@@ -96,10 +96,10 @@
 .markdown-body code {
   color: #7f88cf;
   padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  /* padding-top: 0.2em; */
+  /* padding-bottom: 0.2em; */
   margin: 0;
-  font-size: 100%;
+  font-size: 95%;
   font-weight: bold;
   background-color: rgb(255, 255, 255);
   border-radius: 3px;
