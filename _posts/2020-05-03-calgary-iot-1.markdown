@@ -10,15 +10,16 @@ comments: true
 > LoRaWAN 네트워크를 이용한 북미 첫번째 스마트 도시 캘거리
 
 - [기사 정리](#%ea%b8%b0%ec%82%ac-%ec%a0%95%eb%a6%ac)
-  - [캘거리가 LoRa Technology를 선택한 이유](#%ec%ba%98%ea%b1%b0%eb%a6%ac%ea%b0%80-lora-technology%eb%a5%bc-%ec%84%a0%ed%83%9d%ed%95%9c-%ec%9d%b4%ec%9c%a0)
+    - [캘거리가 LoRa Technology를 선택한 이유](#%ec%ba%98%ea%b1%b0%eb%a6%ac%ea%b0%80-lora-technology%eb%a5%bc-%ec%84%a0%ed%83%9d%ed%95%9c-%ec%9d%b4%ec%9c%a0)
 - [적용](#%ec%a0%81%ec%9a%a9)
-  - [저전력 광역 기술을 통해 도시에서 가능해진 것들](#%ec%a0%80%ec%a0%84%eb%a0%a5-%ea%b4%91%ec%97%ad-%ea%b8%b0%ec%88%a0%ec%9d%84-%ed%86%b5%ed%95%b4-%eb%8f%84%ec%8b%9c%ec%97%90%ec%84%9c-%ea%b0%80%eb%8a%a5%ed%95%b4%ec%a7%84-%ea%b2%83%eb%93%a4)
-  - [LoRaWAN을 이용한 도시 생활의 변화 예시](#lorawan%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%8f%84%ec%8b%9c-%ec%83%9d%ed%99%9c%ec%9d%98-%eb%b3%80%ed%99%94-%ec%98%88%ec%8b%9c)
-- [Reference](#reference)
+    - [저전력 광역 기술을 통해 도시에서 가능해진 것들](#%ec%a0%80%ec%a0%84%eb%a0%a5-%ea%b4%91%ec%97%ad-%ea%b8%b0%ec%88%a0%ec%9d%84-%ed%86%b5%ed%95%b4-%eb%8f%84%ec%8b%9c%ec%97%90%ec%84%9c-%ea%b0%80%eb%8a%a5%ed%95%b4%ec%a7%84-%ea%b2%83%eb%93%a4)
+    - [LoRaWAN을 이용한 도시 생활의 변화 예시](#lorawan%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%8f%84%ec%8b%9c-%ec%83%9d%ed%99%9c%ec%9d%98-%eb%b3%80%ed%99%94-%ec%98%88%ec%8b%9c)
+  - [Reference](#reference)
 
 
 기사 정리 
----
+===
+
 2018년 12월 3일자 기사
 
 캘거리가 북미에서 최초로 LoRaWAN-based 네트워크를 이용하여 스마트 시티를 구축한 도시가 되었다. #SmartCalgary의 시작.
@@ -32,7 +33,7 @@ comments: true
 6. LoRaWAN standard는 기본적으로 보안 기능이 내장되어있다.
 
 적용
----
+===
  
 ![](https://www.calgary.ca/General/PublishingImages/Smart%20city/LoRaWan_radiotower1.jpg)
 
