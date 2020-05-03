@@ -14,7 +14,7 @@ comments: true
 - [적용](#%ec%a0%81%ec%9a%a9)
     - [저전력 광역 기술을 통해 도시에서 가능해진 것들](#%ec%a0%80%ec%a0%84%eb%a0%a5-%ea%b4%91%ec%97%ad-%ea%b8%b0%ec%88%a0%ec%9d%84-%ed%86%b5%ed%95%b4-%eb%8f%84%ec%8b%9c%ec%97%90%ec%84%9c-%ea%b0%80%eb%8a%a5%ed%95%b4%ec%a7%84-%ea%b2%83%eb%93%a4)
     - [LoRaWAN을 이용한 도시 생활의 변화 예시](#lorawan%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%8f%84%ec%8b%9c-%ec%83%9d%ed%99%9c%ec%9d%98-%eb%b3%80%ed%99%94-%ec%98%88%ec%8b%9c)
-  - [Reference](#reference)
+- [Reference](#reference)
 
 
 기사 정리 
@@ -53,7 +53,8 @@ LoRaWAN 신호 범위, downtown 중심뿐만 아니라 대부분의 South & East
 2. Ciry-wide 질 센서를 통해 환경을 모니터링할 수 있음
 3. 하천 센서는 계속해서 홍수에 대한 업데이트를 제공해 재난에 대비하고 계획할 수 있게 함
 
-## Reference
+Reference
+===
 
 * https://www.calgary.ca/General/Pages/SmartCity/LoRaWAN.aspx
 * https://blog.semtech.com/why-calgary-chose-lora-for-its-leading-smart-city-network
