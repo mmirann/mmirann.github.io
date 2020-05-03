@@ -11,6 +11,8 @@ comments: true
 
 ---
 
+## Nook Glow Light3(누글삼) 한달 사용기, 리뷰
+
 ![](https://postfiles.pstatic.net/MjAyMDA0MjZfNzAg/MDAxNTg3ODY1ODcyMTcz.AgqWf9P_ukDxNBK707z4S_dRkJfR3IMnnj7A3CCi_GMg.-wkgO4MVepEttMmVtnbe30kqqFvMjMSzfcSwoBvUzlUg.JPEG.rannan09/IMG_4746.jpg?type=w966)
 
 ## 구매
