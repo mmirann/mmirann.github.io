@@ -56,5 +56,5 @@ LoRaWAN 신호 범위, downtown 중심뿐만 아니라 대부분의 South & East
 ## Reference
 ***
 
-* https://www.calgary.ca/General/Pages/SmartCity/LoRaWAN.aspx
-* https://blog.semtech.com/why-calgary-chose-lora-for-its-leading-smart-city-network
+* [https://www.calgary.ca/General/Pages/SmartCity/LoRaWAN.aspx](https://www.calgary.ca/General/Pages/SmartCity/LoRaWAN.aspx)
+* [https://blog.semtech.com/why-calgary-chose-lora-for-its-leading-smart-city-network](https://blog.semtech.com/why-calgary-chose-lora-for-its-leading-smart-city-network)
