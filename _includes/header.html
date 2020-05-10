@@ -1,4 +1,5 @@
 <header class="site-header">
+  <div class="branding">
     {% if site.theme_settings.gravatar %}
     <a href="{{ site.baseurl }}/">
       <img
@@ -19,41 +20,41 @@
     <h1 class="site-title">
       <a href="{{ site.baseurl }}/">{{ site.theme_settings.title }}</a>
     </h1>
-  </div>
-  <nav class="site-nav">
-    <ul>
-      {% if site.theme_settings.site_navigation_sort %} {% assign site_pages =
-      site.pages | sort: site.theme_settings.site_navigation_sort %} {% else %}
-      {% assign site_pages = site.pages %} {% endif %} {% for page in site_pages
-      %} {% if page.title and page.hide != true %}
-      <li>
-        <a class="page-link" href="{{ page.url | relative_url }}">
-          {{ page.title }}
-        </a>
-      </li>
-      {% endif %} {% endfor %}
-      <!-- Social icons from Font Awesome, if enabled  -->
-      {% include icons.html %}
+    <nav class="site-nav">
+      <ul>
+        {% if site.theme_settings.site_navigation_sort %} {% assign site_pages =
+        site.pages | sort: site.theme_settings.site_navigation_sort %} {% else
+        %} {% assign site_pages = site.pages %} {% endif %} {% for page in
+        site_pages %} {% if page.title and page.hide != true %}
+        <li>
+          <a class="page-link" href="{{ page.url | relative_url }}">
+            {{ page.title }}
+          </a>
+        </li>
+        {% endif %} {% endfor %}
+        <!-- Social icons from Font Awesome, if enabled  -->
+        {% include icons.html %}
 
-      <!-- Search bar -->
-      {% if site.theme_settings.search %}
-      <li>
-        <form action="{{ site.baseurl }}/search.html" method="get">
-          <input
-            type="text"
-            id="search-box"
-            name="query"
-            placeholder="Search"
-            class=""
-          />
-          <button type="submit" class="">
-            <i class="fa fa-fw fa-search"></i>
-          </button>
-        </form>
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
+        <!-- Search bar -->
+        {% if site.theme_settings.search %}
+        <li>
+          <form action="{{ site.baseurl }}/search.html" method="get">
+            <input
+              type="text"
+              id="search-box"
+              name="query"
+              placeholder="Search"
+              class=""
+            />
+            <button type="submit" class="">
+              <i class="fa fa-fw fa-search"></i>
+            </button>
+          </form>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
 
   <div class="site-category">
     <ul class="cat1">
@@ -87,8 +88,8 @@
           <li><a href="/Review/Device">Device</a></li>
           <li><a href="/Review/Book">Book</a></li>
         </ul>
-	  </li>
-	  
+      </li>
+
       <li>
         <a href="/Etc">Etc.</a>
         <ul>
