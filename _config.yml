@@ -13,7 +13,14 @@ theme_settings:
 
   # Header and footer text
   header_text: >
-    <p><br><br><br><br><br><br>Study, Read, Record.<br><br><br><br><br><br></p>
+    <pre>
+
+
+
+    Read, Study, Record.
+
+
+    </pre>
   header_text_feature_image: assets/img/main_bg.jpg
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/rohanchandra/type-theme">Type Theme</a>
