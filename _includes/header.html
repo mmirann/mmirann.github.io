@@ -22,10 +22,8 @@
     </h1>
     <nav class="site-nav">
       <ul>
-        {% if site.theme_settings.site_navigation_sort %} {% assign site_pages =
-        site.pages | sort: site.theme_settings.site_navigation_sort %} {% else
-        %} {% assign site_pages = site.pages %} {% endif %} {% for page in
-        site_pages %} {% if page.title and page.hide != true %}
+        {% for page in site.pages %} {% if (page.title == 'About' or page.title
+        =='tags') and page.hide != true %}
         <li>
           <a class="page-link" href="{{ page.url | relative_url }}">
             {{ page.title }}

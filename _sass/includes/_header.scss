@@ -1,5 +1,8 @@
 .site-header {
   //@extend %padding-small;
+  padding-left: $padding-small;
+  padding-right: $padding-small;
+  padding-top: 2%;
   background: $brand-color;
   border-bottom: 1px solid $border-color;
   display: inline-block;
@@ -16,8 +19,8 @@
   }
 
   .avatar {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
     float: left;
     margin-top: -3px;
     border-radius: 0.2em;
