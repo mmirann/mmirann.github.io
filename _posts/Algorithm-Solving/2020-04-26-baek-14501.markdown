@@ -2,7 +2,7 @@
 layout: post
 title: "[백준] 14501 퇴사 C++"
 subtitle: ""
-categories: [Algotithm/Solving]
+categories: [Algorithm/Solving]
 tags: [algorithm, DP, DFS]
 comments: true
 ---

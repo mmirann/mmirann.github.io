@@ -2,8 +2,8 @@
 layout: post
 title: "Update blog-2"
 subtitle: "블로그 업데이트 일지"
-categories: [Etc/Github blog]
-tags: [Github, blog]
+categories: [Etc/Github Blog]
+tags: [Github, Blog]
 comments: true
 ---
 
