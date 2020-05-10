@@ -3,7 +3,7 @@
   @extend %padding-regular;
   display: inline-block;
   width: 100%;
-  background-color:$header-desc-background-color;
+  background-color: $header-desc-background-color;
   background-size: cover;
   font-size: 1.2em;
   text-align: center;
@@ -13,12 +13,16 @@
   margin-bottom: 0;
 }
 .call-out a {
-  color: $header-desc-link-color
+  color: $header-desc-link-color;
 }
 // Post listing
 .posts {
   .post-teaser {
-    @extend %padding-regular;
+    // @extend %padding-regular;
+    padding-right: $padding-large;
+    padding-left: $padding-large;
+    padding-top: 1%;
+    padding-bottom: 1%;
     width: 100%;
     margin-bottom: 0;
     display: inline-block;

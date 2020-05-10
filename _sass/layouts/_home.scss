@@ -65,11 +65,9 @@
 //   }
 // }
 // // Pagination
-// .pagination .button {
-//   i {
-//     vertical-align: middle;
-//   }
-// }
+.button {
+  float: right;
+}
 // .pagination {
 //   text-align: center;
 //   @media (max-width: 600px) {
