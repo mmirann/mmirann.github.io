@@ -72,7 +72,9 @@
     *:focus {
       outline: none;
     }
-
+    #search-box {
+      background-color: transparent;
+    }
     input {
       &[type="text"] {
         box-sizing: border-box;
