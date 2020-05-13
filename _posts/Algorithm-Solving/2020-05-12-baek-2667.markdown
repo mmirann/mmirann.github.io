@@ -1,0 +1,172 @@
+---
+layout: post
+title: "[백준] 2667번 단지번호 붙이기"
+subtitle: ""
+categories: [Algorithm/Solving]
+tags: [BFS, DFS]
+comments: true
+---
+
+> BFS, DFS
+
+
+## 문제
+---
+
+<그림 1>과 같이 정사각형 모양의 지도가 있다. 1은 집이 있는 곳을, 0은 집이 없는 곳을 나타낸다. 철수는 이 지도를 가지고 연결된 집들의 모임인 단지를 정의하고, 단지에 번호를 붙이려 한다. 여기서 연결되었다는 것은 어떤 집이 좌우, 혹은 아래위로 다른 집이 있는 경우를 말한다. 대각선상에 집이 있는 경우는 연결된 것이 아니다. <그림 2>는 <그림 1>을 단지별로 번호를 붙인 것이다. 지도를 입력하여 단지수를 출력하고, 각 단지에 속하는 집의 수를 오름차순으로 정렬하여 출력하는 프로그램을 작성하시오.
+![](https://www.acmicpc.net/upload/images/ITVH9w1Gf6eCRdThfkegBUSOKd.png)
+
+## 풀이
+***
+* scanf("%1d",&map[i][j]);
+
+-> 한줄로(101010) 입력받아도 하나씩 저장됨
+
+이 문제 또한 BFS, DFS 두가지 방법으로 풀이 가능하다.
+
+
+## 코드
+***
+사용언어: C++
+> BFS
+
+```cpp
+#include <iostream>
+#include <stdio.h>
+#include <queue>
+#include <algorithm>
+#define MAX 25
+
+using namespace std;
+
+int map[MAX][MAX];
+bool visited[MAX][MAX];
+int dirx[4] = {0, 0, -1, 1};
+int diry[4] = {-1, 1, 0, 0};
+int N;
+vector<int> danzi_cnt;
+
+void BFS(int x, int y)
+{
+    queue<pair<int, int>> q;
+    q.push(make_pair(x, y));
+
+    int cnt = 1;
+    visited[x][y] = true;
+
+    while (!q.empty())
+    {
+        x = q.front().first;
+        y = q.front().second;
+        q.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = x + dirx[i];
+            int ny = y + diry[i];
+
+            if (0 <= nx && nx < N && 0 <= ny && ny < N)
+            {
+                if (map[nx][ny] && !visited[nx][ny])
+                {
+                    visited[nx][ny] = true;
+                    cnt++;
+                    q.push(make_pair(nx, ny));
+                }
+            }
+        }
+    }
+
+    danzi_cnt.push_back(cnt);
+}
+int main()
+{
+    scanf("%d", &N);
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            scanf("%1d", &map[i][j]);
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+        {
+            if (map[i][j] && !visited[i][j])
+            {
+                BFS(i, j);
+            }
+        }
+
+    sort(danzi_cnt.begin(), danzi_cnt.end());
+    cout << danzi_cnt.size() << endl;
+    for (int i = 0; i < danzi_cnt.size(); i++)
+    {
+        cout << danzi_cnt[i] << endl;
+    }
+}
+```
+> DFS
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+#define MAX 25
+
+int N;
+int house_cnt; //house_cnt를 증가시키며 클러스터링 
+string graph[MAX]; //초기 그래프
+vector<int> danzi; //house_cnt를 저장하는 벡터, 총 단지의 수가 저장됨
+bool visited[MAX][MAX]; //방문 여부 체크
+
+void DFS(int x, int y)
+{
+    house_cnt++;
+    int dirx[4] = {-1, 1, 0, 0};
+    int diry[4] = {0, 0, -1, 1};
+    visited[x][y] = true;
+    for (int i = 0; i < 4; i++)
+    {
+        int nx = x + dirx[i];
+        int ny = y + diry[i];
+
+        if (0 <= nx && nx < N && 0 <= ny && ny < N)// 그래프 내 범위 체크
+            if (graph[nx][ny] == '1' && visited[nx][ny] == false)
+                DFS(nx, ny);
+    }
+}
+
+int main()
+{
+    cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        cin >> graph[i]; //한줄씩 입력받음
+    }
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+        {
+            if (graph[i][j] == '1' && visited[i][j] == false) //클러스터링되지 않고, 1인경우
+            {
+                house_cnt = 0; //새로 시작
+                DFS(i, j);
+                danzi.push_back(house_cnt);
+            }
+        }
+
+    sort(danzi.begin(), danzi.end());
+    cout << danzi.size() << endl;
+
+    for (int i = 0; i < danzi.size(); i++)
+        cout << danzi[i] << endl;
+    return 0;
+}
+
+```
+
+## 출처
+---
+
+* [백준](https://www.acmicpc.net/problem/2667)

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[백준] 14501 퇴사 C++"
+title: "[백준] 14501번 퇴사"
 subtitle: ""
 categories: [Algorithm/Solving]
-tags: [algorithm, DP, DFS]
+tags: [DP, DFS]
 comments: true
 ---
 
@@ -40,6 +40,7 @@ N = 7인 경우에 다음과 같은 상담 일정표를 보자.
 
 # DP
 
+사용언어: C++
 ---
 
 ```cpp
