@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[백준] 14501 퇴사 C++"
+title: "[백준] 7568덩치 C++"
 subtitle: ""
 categories: [Algorithm/Solving]
 tags: [algorithm, Brute Force]

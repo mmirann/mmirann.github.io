@@ -42,7 +42,7 @@ N = 7인 경우에 다음과 같은 상담 일정표를 보자.
 
 ---
 
-```c
+```cpp
 #include <iostream>
 #include <stdio.h>
 #include <algorithm>
@@ -99,7 +99,7 @@ DP[i + T[i]] = max(DP[i + T[i]], DP[i] + P[i]);
 
 ---
 
-```c
+```cpp
 #include <iostream>
 #include <stdio.h>
 using namespace std;
