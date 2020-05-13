@@ -45,6 +45,7 @@ comments: true
 
 사용언어: C++
 > 첫번째 방법
+
 ```cpp
 #include <iostream>
 #include <stdio.h>
@@ -80,7 +81,9 @@ int main()
     return 0;
 }
 ```
+
 > 두번째 방법
+
 ```cpp
 #include <iostream>
 #include <stdio.h>
