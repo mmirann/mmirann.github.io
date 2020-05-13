@@ -46,10 +46,10 @@
   }
   .site-nav {
     .right-nav {
-      float: none;
+      float: right;
     }
     .left-nav {
-      float: none;
+      float: left;
     }
     ul {
       margin: 0;
@@ -82,8 +82,8 @@
       .social-icon {
         margin-right: 0.5em;
       }
-      .right-nav {
-        float: left;
+      .left-nav {
+        float: none;
       }
     }
   }
