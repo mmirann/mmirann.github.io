@@ -46,10 +46,10 @@
   }
   .site-nav {
     .right-nav {
-      float: right;
+      float: none;
     }
     .left-nav {
-      float: left;
+      float: none;
     }
     ul {
       margin: 0;
@@ -70,10 +70,14 @@
     @media (max-width: 600px) {
       ul {
         display: inline-block;
-        float: none;
         padding-top: $padding-small;
-        text-align: left;
+        text-align: center;
         width: 100%;
+      }
+      li {
+        display: inline;
+        text-align: center;
+        float: left;
       }
       .social-icon {
         margin-right: 0.5em;
