@@ -11,7 +11,13 @@
 
   .branding {
     padding-top: 2%;
-    padding-bottom: 4%;
+    padding-bottom: 6%;
+  }
+
+  @media (max-width: 650px) {
+    .branding {
+      padding-bottom: 17%;
+    }
   }
 
   a {
@@ -66,7 +72,7 @@
   /* --- Search form --- */
   form {
     border: 0;
-    border-bottom: 2px solid $search-color;
+    border-bottom: 1px solid $search-color;
     outline: 0;
 
     *:focus {
