@@ -27,7 +27,12 @@ body {
   font-size: $font-size;
   word-wrap: break-word;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-family-headings;
   line-height: 1.2;
   margin: 0.67em 0;
@@ -48,17 +53,17 @@ h4 {
   font-size: 1.15em;
 }
 blockquote {
-    border-left: 2px solid;
-    padding: 1em 1em;
+  border-left: 2px solid;
+  padding: 1em 1em;
 }
 blockquote p:last-child,
 footer p:last-child {
   margin-bottom: 0;
 }
 table {
-  table-layout:fixed;
-  width:100%;
-  word-wrap:break-word;
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
 }
 td,
 th {
@@ -85,9 +90,13 @@ dt {
   font-weight: bold;
 }
 dd {
-    margin-left: 2em;
+  margin-left: 2em;
 }
-p, ol, ul, dl, .math-display {
+p,
+ol,
+ul,
+dl,
+.math-display {
   line-height: 1.5;
   margin-bottom: 1em;
 }
@@ -97,11 +106,13 @@ p, ol, ul, dl, .math-display {
   width: 100%;
 }
 // Lists within lists
-li > ul, li > ol {
-    margin-bottom: 0;
-    margin-left: 1em;
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 1em;
 }
-ol, ul {
+ol,
+ul {
   list-style-position: inside;
 }
 hr {
@@ -112,6 +123,7 @@ hr {
 }
 a {
   color: $link-color;
+  font-weight: bold;
   text-decoration: none;
 }
 .nav {
@@ -120,12 +132,16 @@ a {
   padding: 0;
 }
 // Responsive media
-iframe, img, embed, object, video {
+iframe,
+img,
+embed,
+object,
+video {
   max-width: 100%;
 }
-img[align=left] {
+img[align="left"] {
   margin-right: 3%;
 }
-img[align=right] {
+img[align="right"] {
   margin-left: 3%;
 }
