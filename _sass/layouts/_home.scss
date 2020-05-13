@@ -16,3 +16,8 @@
 .button {
   float: right;
 }
+@media (max-width: 650px) {
+  .button {
+    font-size: 13px;
+  }
+}
