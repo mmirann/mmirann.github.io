@@ -9,16 +9,11 @@
   float: left;
   width: 100%;
 
-  .branding {
-    padding-top: 2%;
-    padding-bottom: 4%;
-  }
-
-  @media (max-width: 650px) {
-    .branding {
-      padding-bottom: 17%;
-    }
-  }
+  // @media (max-width: 650px) {
+  //   .branding {
+  //     padding-bottom: 17%;
+  //   }
+  // }
 
   a {
     color: $header-link-color;
@@ -43,28 +38,39 @@
   }
 
   .site-nav {
+    text-align: center;
+    display: inline-block;
+    padding-top: 2%;
+    // padding-bottom: 4%;
+    width: 100%;
+  }
+
+  .site-nav {
+    .right-nav {
+      float: right;
+    }
+    .left-nav {
+      float: left;
+    }
     ul {
       margin: 0;
       padding: 0;
       list-style: none;
       line-height: 1.5;
-      float: right;
-      text-align: right;
     }
     li {
       display: inline;
       margin-right: 1em;
-      float: left;
       padding-bottom: 2%;
       // vertical-align: middle;
       // &:last-of-type {
       //   margin-right: 0;
       // }
     }
-    @media (max-width: 300px) {
+    @media (max-width: 600px) {
       ul {
         display: inline-block;
-        float: left;
+        float: none;
         padding-top: $padding-small;
         text-align: left;
         width: 100%;
