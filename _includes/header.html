@@ -25,6 +25,10 @@
         </h1>
       </li>
       <!-- Search bar -->
+      <li class="right-nav social-icon">
+        <!-- Social icons from Font Awesome, if enabled  -->
+        {% include icons.html %}
+      </li>
       {% if site.theme_settings.search %}
       <li class="right-nav">
         <form action="{{ site.baseurl }}/search.html" method="get">
@@ -35,10 +39,6 @@
         </form>
       </li>
       {% endif %}
-      <li class="right-nav, social-icon">
-        <!-- Social icons from Font Awesome, if enabled  -->
-        {% include icons.html %}
-      </li>
       <li class="right-nav">
         {% for page in site.pages %} {% if (page.title =='Tags') and page.hide
         != true %}
