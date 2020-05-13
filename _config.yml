@@ -19,7 +19,7 @@ theme_settings:
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/rohanchandra/type-theme">Type Theme</a>
 
   # Icons
-  rss: true
+  rss: false
   email_address: "miran7803@gmail.com"
   behance:
   bitbucket:
@@ -30,7 +30,7 @@ theme_settings:
   github: "mmirann"
   gitter:
   google_plus:
-  instagram:
+  instagram: "nvmrn"
   linkedin: # Full URL
   pinterest:
   reddit:

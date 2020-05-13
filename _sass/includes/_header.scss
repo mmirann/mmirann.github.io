@@ -44,7 +44,6 @@
     // padding-bottom: 4%;
     width: 100%;
   }
-
   .site-nav {
     .right-nav {
       float: right;
@@ -67,6 +66,7 @@
       //   margin-right: 0;
       // }
     }
+
     @media (max-width: 600px) {
       ul {
         display: inline-block;
@@ -74,6 +74,9 @@
         padding-top: $padding-small;
         text-align: left;
         width: 100%;
+      }
+      .social-icon {
+        margin-right: 0.5em;
       }
     }
   }
