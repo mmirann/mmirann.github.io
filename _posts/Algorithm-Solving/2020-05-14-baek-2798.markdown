@@ -1,0 +1,106 @@
+---
+layout: post
+title: "[백준] 6603번 로또"
+subtitle: ""
+categories: [Algorithm/Solving]
+tags: [DFS]
+comments: true
+---
+
+> DFS
+
+
+## 문제
+---
+독일 로또는 {1, 2, ..., 49}에서 수 6개를 고른다.
+
+로또 번호를 선택하는데 사용되는 가장 유명한 전략은 49가지 수 중 k(k>6)개의 수를 골라 집합 S를 만든 다음 그 수만 가지고 번호를 선택하는 것이다.
+
+예를 들어, k=8, S={1,2,3,5,8,13,21,34}인 경우 이 집합 S에서 수를 고를 수 있는 경우의 수는 총 28가지이다. ([1,2,3,5,8,13], [1,2,3,5,8,21], [1,2,3,5,8,34], [1,2,3,5,13,21], ..., [3,5,8,13,21,34])
+
+집합 S와 k가 주어졌을 때, 수를 고르는 모든 방법을 구하는 프로그램을 작성하시오.
+
+## 입력
+---
+입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄로 이루어져 있다. 첫 번째 수는 k (6 < k < 13)이고, 다음 k개 수는 집합 S에 포함되는 수이다. S의 원소는 오름차순으로 주어진다.
+
+입력의 마지막 줄에는 0이 하나 주어진다.  
+## 출력
+---
+각 테스트 케이스마다 수를 고르는 모든 방법을 출력한다. 이때, 사전 순으로 출력한다.
+
+각 테스트 케이스 사이에는 빈 줄을 하나 출력한다.
+
+## 풀이
+---
+
+알고리즘 분류는 브루트포스를 통해서 들어갔는데 DFS로 풀은 문제다. 문제를 풀면 풀수록 알고리즘 분류가 명확하지 않는 것들이 많아지는데, 어떤 알고리즘을 사용해야하는지 직관적으로 떠오르지 않아서 더 많이 풀어봐야겠다. 
+
+이전에 풀었던 DFS문제들은 좌표문제가 대다수였는데 조합 유형의 문제는 처음 풀어봐서 헤맸다. 하나 외워두면 유용하게 사용할 수 있을 것 같다. 
+
+우선 처음에 n과 pos 둘 다 0으로 시작한다. Check배열을 이용하여 방문 여부를 체크한다. n이 6이될 떄까지 재귀호출을 하면서 출력한다. pos는 계속해서 증가하는데 else if로 처리하여 종료하고 이전에 호출된 DFS가 계속해서 재귀탐색하도록 한다. 
+
+## 코드
+---
+
+사용언어: C++
+
+```cpp
+#include <stdio.h>
+#include <iostream>
+#include <cstring>
+#define MAX 13
+using namespace std;
+
+int S[MAX];
+bool check[MAX];
+
+void DFS(int k, int n, int pos)
+{
+    if (n == 6)
+    {
+        for (int i = 0; i < k; i++)
+        {
+            if (check[i] == true)
+                cout << S[i] << " ";
+        }
+        cout << endl;
+        return;
+    }
+    else if (pos >= k)
+    {
+        return;
+    }
+
+    check[pos] = true;
+    DFS(k, n + 1, pos + 1);
+    check[pos] = false;
+    DFS(k, n, pos + 1);
+}
+
+int main()
+{
+    int k;
+    while (1)
+    {
+        memset(S, 0, sizeof(S));         //배열 초기화, cstring
+        memset(check, 0, sizeof(check)); //배열 초기화, cstring
+        cin >> k;
+        if (k == 0)
+            break;
+        for (int i = 0; i < k; i++)
+            cin >> S[i];
+        //scanf("%d", &S[i]);
+
+        DFS(k, 0, 0);
+        cout << endl;
+    }
+    return 0;
+}
+
+```
+
+## 출처
+---
+
+* [백준](https://www.acmicpc.net/problem/6603)
