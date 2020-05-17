@@ -8,7 +8,8 @@ comments: true
 ---
 > 우리는 왜 잠을 자야 할까 - 매슈 워커
 
-![](https://image.yes24.com/goods/69761743/800x0)
+
+<center>![](https://image.yes24.com/goods/69761743/800x0){:width=:"400" height:"600"}</center>
 
 > 리뷰
 
