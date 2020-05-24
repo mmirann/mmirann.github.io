@@ -1,0 +1,157 @@
+---
+layout: post
+title: "[백준] 2606번 바이러스"
+subtitle: ""
+categories: [Algorithm/Solving]
+tags: [DFS,BFS]
+comments: true
+---
+
+> DFS, BFS
+
+
+> <point>문제</point>
+
+신종 바이러스인 웜 바이러스는 네트워크를 통해 전파된다. 한 컴퓨터가 웜 바이러스에 걸리면 그 컴퓨터와 네트워크 상에서 연결되어 있는 모든 컴퓨터는 웜 바이러스에 걸리게 된다.
+
+예를 들어 7대의 컴퓨터가 <그림 1>과 같이 네트워크 상에서 연결되어 있다고 하자. 1번 컴퓨터가 웜 바이러스에 걸리면 웜 바이러스는 2번과 5번 컴퓨터를 거쳐 3번과 6번 컴퓨터까지 전파되어 2, 3, 5, 6 네 대의 컴퓨터는 웜 바이러스에 걸리게 된다. 하지만 4번과 7번 컴퓨터는 1번 컴퓨터와 네트워크상에서 연결되어 있지 않기 때문에 영향을 받지 않는다.
+
+
+![](https://www.acmicpc.net/upload/images/zmMEZZ8ioN6rhCdHmcIT4a7.png)
+
+어느 날 1번 컴퓨터가 웜 바이러스에 걸렸다. 컴퓨터의 수와 네트워크 상에서 서로 연결되어 있는 정보가 주어질 때, 1번 컴퓨터를 통해 웜 바이러스에 걸리게 되는 컴퓨터의 수를 출력하는 프로그램을 작성하시오.
+
+> <point>입력</point>
+
+첫째 줄에는 컴퓨터의 수가 주어진다. 컴퓨터의 수는 100 이하이고 각 컴퓨터에는 1번 부터 차례대로 번호가 매겨진다. 둘째 줄에는 네트워크 상에서 직접 연결되어 있는 컴퓨터 쌍의 수가 주어진다. 이어서 그 수만큼 한 줄에 한 쌍씩 네트워크 상에서 직접 연결되어 있는 컴퓨터의 번호 쌍이 주어진다.
+
+> <point>출력</point>
+
+1번 컴퓨터가 웜 바이러스에 걸렸을 때, 1번 컴퓨터를 통해 웜 바이러스에 걸리게 되는 컴퓨터의 수를 첫째 줄에 출력한다.
+
+> <point>풀이</point>
+
+간단한 DFS, BFS 문제다. 다만 그래프 문제여서 자료구조를 어떻게 사용해야하나 고민하다가 이중 벡터를 사용하였다. 그리고 양쪽 다 저장하면 연결된 네트워크 구축이 가능하다! 
+그런데 생각치 못한 곳때문에 시간을 많이 썼다. 벡터를 이용할 때, 아무 값도 push되지 않은 상태에서 인덱스를 이용해 접근하려면 꼭
+```cpp
+vector.resize(size);
+```
+이렇게 사이즈를 설정해줘야한다!! 
+
+
+> <point> 코드 </point>
+
+사용언어: C++
+
+> DFS
+
+```cpp
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+using namespace std;
+
+#define MAX 100
+vector<vector<int> > computer;
+vector<int> visit;
+
+int virus_com = 0;
+
+void DFS(int n)
+{
+    visit[n] = true; //이 컴퓨터는 체크 완료
+    if(n!=1)
+        virus_com++;
+
+    for (int i = 0; i < computer[n].size(); i++) //해당 인덱스와 연결된 컴퓨터 검사
+    {
+        if (!visit[computer[n][i]])
+        { //아직 그 컴퓨터에 방문하지 않았다면
+            DFS(computer[n][i]);
+        }
+    }
+}
+
+int main()
+{
+    int com_num, line_num, n1, n2;
+
+    scanf("%d %d", &com_num, &line_num);
+
+    computer.resize(com_num+1);
+    visit.resize(com_num+1);
+    
+    for (int i = 1; i <= line_num; i++)
+    {
+        scanf("%d %d", &n1, &n2);
+        computer[n1].push_back(n2);
+        computer[n2].push_back(n1);
+    }
+    DFS(1);
+    cout<<virus_com<<endl;
+}
+```
+
+>BFS
+
+```cpp
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+#define MAX 100
+vector<vector<int> > computer;
+vector<int> visit;
+
+int virus_com = 0;
+
+void BFS(int n)
+{
+    int temp;
+    queue<int> q;
+
+    q.push(n);
+    visit[n] = true; //이 컴퓨터는 체크 완료
+
+    while(!q.empty()){
+        temp=q.front();
+        q.pop();
+
+        for(int i=0;i<computer[temp].size();i++){
+            if(!visit[computer[temp][i]])
+             {
+                 visit[computer[temp][i]]=true;
+                 virus_com++;
+                 q.push(computer[temp][i]);
+                }
+            
+        }
+    }
+}
+
+int main()
+{
+    int com_num, line_num, n1, n2;
+
+    scanf("%d %d", &com_num, &line_num);
+
+    computer.resize(com_num+1);
+    visit.resize(com_num+1);
+    
+    for (int i = 1; i <= line_num; i++)
+    {
+        scanf("%d %d", &n1, &n2);
+        computer[n1].push_back(n2);
+        computer[n2].push_back(n1);
+    }
+    BFS(1);
+    cout<<virus_com<<endl;
+}
+
+```
+> <point>출처</point>
+
+* [백준](https://www.acmicpc.net/problem/1606)
