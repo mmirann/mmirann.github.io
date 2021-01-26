@@ -1,7 +1,7 @@
 ---
 layout: category
-title: Review/Book
-permalink: 'Review/Book'
+title: Book Review
+permalink: "Review/Book"
 ---
 
 Another sample category page.

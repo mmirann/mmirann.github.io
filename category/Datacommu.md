@@ -1,7 +1,7 @@
 ---
 layout: category
-title: LoRa 네트워크
-permalink: "IoT/LoRa"
+title: 데이터 통신
+permalink: "Study/DataCommu"
 ---
 
 Another sample category page.

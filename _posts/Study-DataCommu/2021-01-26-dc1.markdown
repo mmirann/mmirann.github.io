@@ -1,0 +1,236 @@
+---
+layout: post
+title: "[데이터통신] 1.Introduction"
+subtitle: ""
+categories: [Study/dataCommu]
+tags:
+comments: true
+---
+
+> 1.  Introduction
+
+---
+
+#### 컴퓨터 네트워크
+
+정의: 독립적인 컴퓨터가 단일 기술(single technology)로 상호 연결된 집합
+
+상호 연결: 두 대의 컴퓨터가 서로 정보를 교환할 수 있음
+=> 동선, 광섬유, 적외선, 통신위성 등으로 연결
+
+#### 분산 시스템(distributed system)
+
+: 네트워크 위에서 동작되는 소프트웨어 시스템
+
+    차이점)
+    - 분산시스템에서는 독립된 컴퓨터들이 함께 동작하더라도 사용자에게는 결합된 하나의 시스템으로 보여야 함
+    - 네트워크는 단말의 일관성, 모델 및 SW가 없음
+
+Ex) WWW: 인터넷 상단에서 실행되고, 모든 것이 문서(한페이지)처럼 보임, Cloud computing
+
+> 1.1 컴퓨터 네트워크의 용도
+
+#### Client-Server Paradigm
+
+: 서버는 DB를 갱신하고자 하는 클라이언트 요청에 응답하는 DB 기반의 웹 페이지 생성 -> 역할 분리
+
+단) 정보 공유는 효율적이나 서버에 Bottleneck 발생 가능
+
+#### Peer to Peer Paradigm
+
+: 모든 사람은 여러 사람과 통신할 수 있고, 클라이언트 서버가 고정되어 있지 않음 -> 역할 동일
+중앙 DB를 가지고 있지 않음
+
+단) 병목 현상은 없지만 특정 정보를 찾기 힘듦
+
+    자원이 뭉쳐있으면 C-S, 흩어져 있으면 P-P
+
+> 1.2. 네트워크 하드웨어
+
+4개의 기준: 전송 기술, 크기, 매개체, 전환 기술
+
+### 전송 기술로 나눈 네트워크
+
+#### Broadcast Networks
+
+- 하나의 통신 채널만 공유
+- 네트워크 상의 모든 기기 공유 -> 임의의 패킷을 보내면 다른 모든 기기들이 수신(수신지 지정)
+- 유지 보수가 쉽고 저렴함
+
+// 멀티 캐스팅: 브로드 캐스팅 시스템 중 일부로, 네트워크에 연결된 기기들 중 일부에게만 전송 지원
+
+#### Point-to-point Networks
+
+- 개별적인 기기의 쌍을 연결
+- Relay device가 필요
+
+// 유니 캐스팅: 하나의 송신자와 하나의 수신자의 point-to-point 연결
+
+    작은 네트워크는 Broadcast Network
+    큰 네트워크는 Point-to-point (Relay 필요)
+
+### 크기로 나눈 네트워크
+
+#### PAN (Personal Area Networks)
+
+: 개인의 범위에서 통신하는 장치
+
+Ex) 주변 장치와 컴퓨터를 연결하는 무선 네트워크
+Master-slave 관계: 가장 간단한 형태의 블루투스 네트워크 -> Collision 문제 해결 방법
+
+#### LAN (Local Area Networks)
+
+: 사무실이나 공장과 같은 단일 건물 내에서 동작
+
+Ex) Ethernet(유선 LAN, 점대점) , WIFI(무선 LAN, 브로드)
+
+- Master가 없기 때문에 다음에 누가 보낼지 결정해주는 Arbitration(중재자) 필요 -> 충돌 발생 가능
+- 유/무선 브로드 캐스트 네트워크 할당 방법은 정적(라운드로빈), 동적이 있으나 채널 낭비를 막기 위해 동적이 일반적
+- 동적 할당 방법은 채널이 중앙(베이스 스테이션이 결정)/분산(기기 스스로 전송 여부 결정)
+
+#### MAN (Metropolitan Area Networks)
+
+: 도시를 커버
+
+Ex) 케이블 TV 네트워크
+
+- 초기에 Ad hoc 시스템으로 설계
+- LAN을 확장해서 MAN으로 사용 불가
+
+// Ad hoc: 클라이언트는 액세스 포인트 없이 두 대의 인접한 컴퓨터가 직접적으로 통신하기 위한 무선 거리를 보장하는 배열
+
+#### WAN (Wide Area Networks)
+
+: 나라, 대륙 간 전 지구 연결
+
+    WAN = Subnets + Hosts(LANs)
+    서브넷) 호스트를 연결하는 네트워크의 나머지
+    Subnet=Transmission line + Switching Element
+
+전송 선로) 기기 간의 비트 전송/ 구리선, 광섬유, 무선으로 구성
+
+    스위치) 둘 이상의 전송 선로를 연결
+    -> 대부분 라우터라고 부름
+
+- 점대점 네트워크와 Store-and-Forward 서브넷과 LAN으로 구성
+
+### 스위칭 기술로 나눈 네트워크
+
+#### Circuit-Switched Network
+
+: End-to-end Resource가 “call”에 의해 보존됨
+
+- Call이 끝날 때까지 그 Resource 사용(공유 X)
+- 링크 대역폭이 조각으로 나눠짐(Reservation 단위)
+
+#### Packet Switched Network
+
+: 각 End-to-end 데이터 스트림이 “패킷”으로 나눠짐
+
+- 각 패킷은 Full 링크 대역폭 사용
+- 유저 A,B 패킷은 네트워크 Resource 공유
+- Resource는 요청할 때마다 사용됨
+- 패킷 스위치는 더 많은 유저가 네트워크를 사용하게 함
+
+Four sources of packet delay
+
+1. nodal processing: 패킷이 도착하면 비트 에러를 체크하고 output link를 정함
+2. Queuing: output link에서 전송을 기다리는 시간, 라우터의 혼잡 정도에 따라 다름(Circit에는 존재하지 않음)
+3. Transmission delay
+   R=link bandwidth(bps)/ L=packet length (bits)
+
+   Time to send bits into link = L / R (용량/스피드)
+
+4. Propagation delay
+
+   D=length of physical link (거리의 비례)
+
+   S=propagation speed in medium(~2x10^8 m/sec)
+   (매체에 비례)
+
+   Propagation delay = d / s
+
+   //S와 R 헷갈리지 말 것
+
+> 1.3 네트워크 소프트웨어
+>
+> : 네트워크 소프트웨어는 Stack of Layers로 구성되며 각 layer은 프로토콜에 의해 원격 위치에 있는 각 해당 layer와 통신
+
+Network software 계층: 각 레이어는 상위 레이어에 function call로 service 제공
+
+용어 정리
+
+- Layering: 정보 은닉, 데이터 캡슐화의 개념
+  “Divide and conquer approach”-> 복잡성 감소
+- Protocol: Define how to implement the service
+  통신 객체 사이에 어떻게 대화를 수행할 것인가
+- Interface: Tell how to access the service
+  인접한 계층의 각 쌍 사이
+- Service: Defines what the layer does
+
+### 프로토콜 계층 구조
+
+#### How to define Protocol?
+
+- Syntax of message) 어떤 field 에 어떠 내용이 담겨야 하는지, 어떤 format을 취하는지
+- Semantics of a message) msg가 어떤 걸 뜻하는지
+
+#### 계층 설계 시 쟁점
+
+- Reliability: 받은 오류를 탐지하기 위해 오류 검출 코드를 사용하고 올바른 메시지 받을 때까지 계속/ 네트워크의 다중 경로에서 몇몇 링크와 라우터가 동작되지 않을 때 자동 결정을 함-> 라우팅
+- 진화: 지속성이 있어야함
+- 자원 할당: 어떻게 효율적으로 쓸 것인가
+- 보안
+
+#### 연결형 서비스(Connect-Oriented)
+
+각 layer는 위 layer에 연결형/ 비연결형 서비스를 제공할 수 있음
+
+: 통신 연결 전/후에 연결 설정 후 해제 (연결 필요)
+Ex) 전화망 모델, tube나 circuit처럼 동작
+
+- 비트 나 패킷이 보낸 순서대로 도착
+- Reliable Message sequence: 페이지 단위로 전달
+- Reliable Byte Stream: 메시지 경계가 없음, 쪼개서 가도 됨
+
+#### 비연결형 서비스(Connectless)
+
+: 연결을 설정하지 않고 개시됨 (연결 필요 x)
+Ex) 우편망 모델
+
+- 항상 같은 통로로 거치지 않고, 순서가 지켜지지 않음
+
+//네트워크 계층에서 메시지를 패킷이라고 하는데, 다음 노드에 전송되기 전에 중간 노드가 전체 메세지를 받을 때 이것을 store-and-forward 스위칭이라고 함.
+
+#### Some Service Variations
+
+- Reliability: 유실이 있느냐 없느냐,
+  신뢰성이 없는 서비스는 패킷 유실이 있다고 해도 빠른 전달이 중요한 real-time시스템 등에서 사용됨
+- Message sequence vs Byte stream: 전달하는 단위의 경계 유무 => 두개 다 Reliability o
+
+#### Service Primitives(동작)
+
+: a set of primitives (a.k.a. system calls) defines a service
+
+//어떻게 protocol과 연결되는지
+Ex) LISTEN, CONNECT, RECEIVE, SEND, DISCONNECT
+
+#### 서비스와 프로토콜의 관계
+
+서비스) 한 개의 계층이 자기 상위 계층에게 제공하는 primitive들의 집합(동작의 구현 방법에 대해 알리지x)
+
+프로토콜) 한 계층 상에서 피어들 간에 교환되는 패킷 에 대한 형식과 의미를 규정하는 규칙들의 집합
+
+//서비스는 계층 간의 인터페이스와 관련이 있는 반면 프로토콜은 피어 엔티티 간에 전송된 패킷
+
+<Point> 프로토콜은 서비스를 구현함 </point>
+
+> 1.4 참조 모델
+
+OSI
+: 개념만 있고 동작하지는 않음
+
+- 각 계층에 사용되어야 하는 서비스와 프로토콜을 정확하게 규정하지 않고 각 계층이 수행해야하는 기능만 규정
+
+TCP/IP
+: 개념은 없으나 동작하고 특정한 서비스와 프로토콜이 있음
