@@ -51,6 +51,8 @@ Ex) WWW: 인터넷 상단에서 실행되고, 모든 것이 문서(한페이지)
 
 ### 전송 기술로 나눈 네트워크
 
+---
+
 #### Broadcast Networks
 
 - 하나의 통신 채널만 공유
@@ -71,11 +73,14 @@ Ex) WWW: 인터넷 상단에서 실행되고, 모든 것이 문서(한페이지)
 
 ### 크기로 나눈 네트워크
 
+---
+
 #### PAN (Personal Area Networks)
 
 : 개인의 범위에서 통신하는 장치
 
 Ex) 주변 장치와 컴퓨터를 연결하는 무선 네트워크
+
 Master-slave 관계: 가장 간단한 형태의 블루투스 네트워크 -> Collision 문제 해결 방법
 
 #### LAN (Local Area Networks)
@@ -83,6 +88,7 @@ Master-slave 관계: 가장 간단한 형태의 블루투스 네트워크 -> Col
 : 사무실이나 공장과 같은 단일 건물 내에서 동작
 
 Ex) Ethernet(유선 LAN, 점대점) , WIFI(무선 LAN, 브로드)
+<img width="208" alt="image" src="https://user-images.githubusercontent.com/48276682/105802681-0ae41e80-5fdf-11eb-9496-9a0b4297e94c.png">
 
 - Master가 없기 때문에 다음에 누가 보낼지 결정해주는 Arbitration(중재자) 필요 -> 충돌 발생 가능
 - 유/무선 브로드 캐스트 네트워크 할당 방법은 정적(라운드로빈), 동적이 있으나 채널 낭비를 막기 위해 동적이 일반적
@@ -114,7 +120,13 @@ Ex) 케이블 TV 네트워크
 
 - 점대점 네트워크와 Store-and-Forward 서브넷과 LAN으로 구성
 
+<img width="172" alt="image" src="https://user-images.githubusercontent.com/48276682/105802752-2bac7400-5fdf-11eb-8cb9-f6717de6924c.png">
+
 ### 스위칭 기술로 나눈 네트워크
+
+---
+
+<img width="232" alt="image" src="https://user-images.githubusercontent.com/48276682/105802784-3e26ad80-5fdf-11eb-8be3-94983dad3156.png">
 
 #### Circuit-Switched Network
 
@@ -132,33 +144,31 @@ Ex) 케이블 TV 네트워크
 - Resource는 요청할 때마다 사용됨
 - 패킷 스위치는 더 많은 유저가 네트워크를 사용하게 함
 
-Four sources of packet delay
+#### Four sources of packet delay
 
 1. nodal processing: 패킷이 도착하면 비트 에러를 체크하고 output link를 정함
 2. Queuing: output link에서 전송을 기다리는 시간, 라우터의 혼잡 정도에 따라 다름(Circit에는 존재하지 않음)
 3. Transmission delay
-   R=link bandwidth(bps)/ L=packet length (bits)
-
-   Time to send bits into link = L / R (용량/스피드)
+   R=link bandwidth(bps)/ L=packet length (bits)  
+    Time to send bits into link = L / R (용량/스피드)
 
 4. Propagation delay
 
-   D=length of physical link (거리의 비례)
-
+   D=length of physical link (거리의 비례)  
    S=propagation speed in medium(~2x10^8 m/sec)
-   (매체에 비례)
-
-   Propagation delay = d / s
-
+   (매체에 비례)  
+   Propagation delay = d / s  
    //S와 R 헷갈리지 말 것
 
+<img width="281" alt="image" src="https://user-images.githubusercontent.com/48276682/105802830-526aaa80-5fdf-11eb-9bae-0c03f58848f4.png">
+
 > 1.3 네트워크 소프트웨어
->
-> : 네트워크 소프트웨어는 Stack of Layers로 구성되며 각 layer은 프로토콜에 의해 원격 위치에 있는 각 해당 layer와 통신
+
+: 네트워크 소프트웨어는 Stack of Layers로 구성되며 각 layer은 프로토콜에 의해 원격 위치에 있는 각 해당 layer와 통신
 
 Network software 계층: 각 레이어는 상위 레이어에 function call로 service 제공
 
-용어 정리
+#### 용어 정리
 
 - Layering: 정보 은닉, 데이터 캡슐화의 개념
   “Divide and conquer approach”-> 복잡성 감소
@@ -168,12 +178,18 @@ Network software 계층: 각 레이어는 상위 레이어에 function call로 s
   인접한 계층의 각 쌍 사이
 - Service: Defines what the layer does
 
+<img width="230" alt="image" src="https://user-images.githubusercontent.com/48276682/105802883-77f7b400-5fdf-11eb-8daa-b8d8a0421e45.png">
+
 ### 프로토콜 계층 구조
+
+---
 
 #### How to define Protocol?
 
 - Syntax of message) 어떤 field 에 어떠 내용이 담겨야 하는지, 어떤 format을 취하는지
 - Semantics of a message) msg가 어떤 걸 뜻하는지
+
+<img width="317" alt="image" src="https://user-images.githubusercontent.com/48276682/105802905-8ba31a80-5fdf-11eb-9b99-4a67c4a53620.png">
 
 #### 계층 설계 시 쟁점
 
@@ -186,7 +202,7 @@ Network software 계층: 각 레이어는 상위 레이어에 function call로 s
 
 각 layer는 위 layer에 연결형/ 비연결형 서비스를 제공할 수 있음
 
-: 통신 연결 전/후에 연결 설정 후 해제 (연결 필요)
+: 통신 연결 전/후에 연결 설정 후 해제 (연결 필요)  
 Ex) 전화망 모델, tube나 circuit처럼 동작
 
 - 비트 나 패킷이 보낸 순서대로 도착
@@ -195,7 +211,7 @@ Ex) 전화망 모델, tube나 circuit처럼 동작
 
 #### 비연결형 서비스(Connectless)
 
-: 연결을 설정하지 않고 개시됨 (연결 필요 x)
+: 연결을 설정하지 않고 개시됨 (연결 필요 x)  
 Ex) 우편망 모델
 
 - 항상 같은 통로로 거치지 않고, 순서가 지켜지지 않음
@@ -224,6 +240,8 @@ Ex) LISTEN, CONNECT, RECEIVE, SEND, DISCONNECT
 //서비스는 계층 간의 인터페이스와 관련이 있는 반면 프로토콜은 피어 엔티티 간에 전송된 패킷
 
 <Point> 프로토콜은 서비스를 구현함 </point>
+
+<img width="238" alt="image" src="https://user-images.githubusercontent.com/48276682/105802927-9958a000-5fdf-11eb-8325-7891bd4d85ee.png">
 
 > 1.4 참조 모델
 
