@@ -30,6 +30,8 @@ Ex) WWW: 인터넷 상단에서 실행되고, 모든 것이 문서(한페이지)
 
 > 1.1 컴퓨터 네트워크의 용도
 
+---
+
 #### Client-Server Paradigm
 
 : 서버는 DB를 갱신하고자 하는 클라이언트 요청에 응답하는 DB 기반의 웹 페이지 생성 -> 역할 분리
@@ -46,6 +48,8 @@ Ex) WWW: 인터넷 상단에서 실행되고, 모든 것이 문서(한페이지)
     자원이 뭉쳐있으면 C-S, 흩어져 있으면 P-P
 
 > 1.2. 네트워크 하드웨어
+
+---
 
 4개의 기준: 전송 기술, 크기, 매개체, 전환 기술
 
@@ -88,7 +92,8 @@ Master-slave 관계: 가장 간단한 형태의 블루투스 네트워크 -> Col
 : 사무실이나 공장과 같은 단일 건물 내에서 동작
 
 Ex) Ethernet(유선 LAN, 점대점) , WIFI(무선 LAN, 브로드)
-<img width="208" alt="image" src="https://user-images.githubusercontent.com/48276682/105802681-0ae41e80-5fdf-11eb-9496-9a0b4297e94c.png">
+
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/105802681-0ae41e80-5fdf-11eb-9496-9a0b4297e94c.png">
 
 - Master가 없기 때문에 다음에 누가 보낼지 결정해주는 Arbitration(중재자) 필요 -> 충돌 발생 가능
 - 유/무선 브로드 캐스트 네트워크 할당 방법은 정적(라운드로빈), 동적이 있으나 채널 낭비를 막기 위해 동적이 일반적
@@ -120,13 +125,13 @@ Ex) 케이블 TV 네트워크
 
 - 점대점 네트워크와 Store-and-Forward 서브넷과 LAN으로 구성
 
-<img width="172" alt="image" src="https://user-images.githubusercontent.com/48276682/105802752-2bac7400-5fdf-11eb-8cb9-f6717de6924c.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/105802752-2bac7400-5fdf-11eb-8cb9-f6717de6924c.png">
 
 ### 스위칭 기술로 나눈 네트워크
 
 ---
 
-<img width="232" alt="image" src="https://user-images.githubusercontent.com/48276682/105802784-3e26ad80-5fdf-11eb-8be3-94983dad3156.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/105802784-3e26ad80-5fdf-11eb-8be3-94983dad3156.png">
 
 #### Circuit-Switched Network
 
@@ -160,9 +165,11 @@ Ex) 케이블 TV 네트워크
    Propagation delay = d / s  
    //S와 R 헷갈리지 말 것
 
-<img width="281" alt="image" src="https://user-images.githubusercontent.com/48276682/105802830-526aaa80-5fdf-11eb-9bae-0c03f58848f4.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/105802830-526aaa80-5fdf-11eb-9bae-0c03f58848f4.png">
 
 > 1.3 네트워크 소프트웨어
+
+---
 
 : 네트워크 소프트웨어는 Stack of Layers로 구성되며 각 layer은 프로토콜에 의해 원격 위치에 있는 각 해당 layer와 통신
 
@@ -178,7 +185,7 @@ Network software 계층: 각 레이어는 상위 레이어에 function call로 s
   인접한 계층의 각 쌍 사이
 - Service: Defines what the layer does
 
-<img width="230" alt="image" src="https://user-images.githubusercontent.com/48276682/105802883-77f7b400-5fdf-11eb-8daa-b8d8a0421e45.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/105802883-77f7b400-5fdf-11eb-8daa-b8d8a0421e45.png">
 
 ### 프로토콜 계층 구조
 
@@ -239,11 +246,13 @@ Ex) LISTEN, CONNECT, RECEIVE, SEND, DISCONNECT
 
 //서비스는 계층 간의 인터페이스와 관련이 있는 반면 프로토콜은 피어 엔티티 간에 전송된 패킷
 
-<Point> 프로토콜은 서비스를 구현함 </point>
+<point> 프로토콜은 서비스를 구현함 </point>
 
-<img width="238" alt="image" src="https://user-images.githubusercontent.com/48276682/105802927-9958a000-5fdf-11eb-8325-7891bd4d85ee.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/105802927-9958a000-5fdf-11eb-8325-7891bd4d85ee.png">
 
 > 1.4 참조 모델
+
+---
 
 OSI
 : 개념만 있고 동작하지는 않음
