@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[데이터통신] 1.Physical Layer-1"
+title: "[데이터통신] 2.Physical Layer-1"
 subtitle: ""
 categories: [Study/dataCommu]
 tags:
@@ -42,6 +42,8 @@ an,bn=n번째 harmonic항의 사인과 코사인 진폭
     =
     O(f)=F(f)*H(f)
 
+---
+
 #### Physical Layer 용어 정리
 
 **Frequency(Hz)**: 단위 시간 당 진동 또는 패턴 수  
@@ -68,29 +70,29 @@ $$S/N = antilog (SNR/10) $$
 
 ---
 
-1.  자기 매체
-    :높은 대역폭이나 비트당 전송 비용이 중요한 경우에는 비용 면에서 효율적=> 하지만 운송 비용 생각
+1.  **자기 매체**
+    : 높은 대역폭이나 비트당 전송 비용이 중요한 경우에는 비용 면에서 효율적=> 하지만 운송 비용 생각
 
-2.  트위스트 페어  
-    전선을 꼬아 놓으면 전자파가 상쇄되어 전선의 방사 줄임
+2.  **트위스트 페어**  
+    : 전선을 꼬아 놓으면 전자파가 상쇄되어 전선의 방사 줄임
     Ex) 전화 시스템(Repeater 필요), 아날로그/디지털 전송
 
     - 카테고리 3: 완만히 꼬인 2개의 절연된 전선=> 4개의 쌍이 여덟 개의 전선을 유지 => 다중 회선 전화 사용 가능(voice grade)
     - 카테고리 5: cm당 더 많은 꼬임 => 먼 거리에서 적은 혼선과 양질의 신호 보장, 고속 컴퓨터 통신에 적합 (data grade)
     - UTP: 전선과 절연체로 구성된 카테고리 6을 통해 참조되는 반면 카테고리 7은 개별 연선에 차폐 기능이 있음
 
-3.  동축케이블  
+3.  **동축케이블**  
     : 트위스트 페어보다 차폐성이 우수하고 고속으로 더 먼거리 전송 가능
 
     - 50옴: 디지털 전송(Cable TV, LAN)에서 일반적, Baseband - 75옴: 아날로그 전송과 케이블 TV, Broadband
 
       <u>원래 전화 시스템에서 사용되었지만 광섬유가 대체, 하지만 케이블 TV와 대도시 네트워크에서 널리 쓰임</u>
 
-4.  전력선(power line)
+4.  **전력선(power line)**
     : 데이터 통신에 재사용되는 와이어링은 전화, 케이블 TV뿐만 아닌 더 대중적인 전력선(가장 중요한 Physical link)  
     <u>데이터 신호는 저주파의 전력 신호에 중첩되어 두 신호가 동시에 전력선을 사용</u>
 
-5.  광섬유
+5.  **광섬유**
 
 - Light source, transmission medium, detector 로 구성
 - 네트워크 백본에서 장거리 전송이나 고속 LAN, FttH(Fiber to the Home)과 같은 고속 전송망 등에 사용
@@ -109,10 +111,10 @@ $$
 * 주파수(f): Electromagnetic wave의 초당 진동수
 * 파장($\gamma$): 주파수의 연속된 최댓값(또는 최솟값)들 사이의 거리
 * 광속(c): 3x108m/sec (동선이나 광섬유에선 2/3로 느려짐)
+
+- Given the width of a wavelength, d\gamma, the corresponding frequency bandwidth
 $$
 
-- Given the width of a wavelength, d$\gamma$, the corresponding frequency bandwidth
-  $$ df = cd\gamma / \gamma^2  $$
 - 대부분의 전송은 고효율을 위해 좁은 주파수 대역을 사용하지만 FHSS와DSSS과 같은 두 가지 변형은 넓은 대역 사용
 
 #### Spread Spectrum
