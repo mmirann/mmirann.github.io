@@ -45,20 +45,22 @@ comments: true
 - NRZ가 0이나 1이 계속 반복될 경우 구분하기 힘듦
 - 케이블을 하나 더 써서 클럭 신호를 보내는 건 비쌈
 - **Manchester Encoding**
-  :데이터 xor 클럭 신호를 보냄, bit period 중간에 보냄  
+  : 데이터 xor 클럭 신호를 보냄, bit period 중간에 보냄  
   0과 xor: 저->고 / 1과 xor: 고->저  
-  => NRZ에 비해 2배의 대역폭 요구-> 잦은 트랜지션
-  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096538-1d925b00-6179-11eb-8f7a-57686e3013fe.png">
+  => NRZ에 비해 2배의 대역폭 요구-> 잦은 트랜지션  
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096538-1d925b00-6179-11eb-8f7a-57686e3013fe.png">
 
 - **Differential Manchester Encoding**(Biphase 코드)
-  :극성(DC component)이 중요하여 개선,
-  Midbit transition은 clocking할때만 쓰이고, 트랜지션 있으면0, 없으면 1을 나타냄  
-   - 단점) bandwidth를 더 요구함 비트 시간당 최소 한 번의 전환, 가능하면 두번, 최대 modulation율이 NRZ의 두배 이상 - 장점) mid-bit transition에 동기화 - +5V와 -5V를 오고 가서 DC Component 없고, error detection있음
+  : 극성(DC component)이 중요하여 개선,
+  Midbit transition은 clocking할때만 쓰이고, 트랜지션 있으면0, 없으면 1을 나타냄
 
-      <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096558-297e1d00-6179-11eb-8b60-c9fa82689e7f.png">
+  - 단점) bandwidth를 더 요구함 비트 시간당 최소 한 번의 전환, 가능하면 두번, 최대 modulation율이 NRZ의 두배 이상
+  - 장점) mid-bit transition에 동기화 - +5V와 -5V를 오고 가서 DC Component 없고, error detection있음
+
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096558-297e1d00-6179-11eb-8b60-c9fa82689e7f.png">
 
 - **NRZ-I**
-  :1을 인코딩할 땐 전환, 0을 인코딩할땐 무전환  
+  : 1을 인코딩할 땐 전환, 0을 인코딩할땐 무전환  
   =>길게 반복되는 0이 문제 (1은 문제 x)
 - **4B5B**
   : 4bit->5it mapping, 0이 3개 초과하지 않도록  
@@ -74,11 +76,13 @@ comments: true
 이 말은 DC성분이 없다는 말이고 음과 양이 골고루 존재해 클럭 복구 위한 전환에 도움
 
 - **Bipolar Encoding** (전화망에선 AMI)
-  :1을 표현할 때 +1V와 -1V를 교대로 보내 평균이 0이 되게 함-> 전압레벨추가
+  : 1을 표현할 때 +1V와 -1V를 교대로 보내 평균이 0이 되게 함-> 전압레벨추가
 - **Multilevel Bipolar Encoding**
-  : 두 레벨보다 많이 사용함 - 장점) DC component없고, lower bandwidth, easy error detection - 단점) Multilevel을 사용하면 NRZ만큼 효율적이지 않음  
-   => 각 symbol은 오직 한 개의 비트만 표현: +A, -A, 0  
-   Log23=1.58bits -> 0.58의 정보량은 낭비됨
+  : 두 레벨보다 많이 사용함
+  - 장점) DC component없고, lower bandwidth, easy error detection
+  - 단점) Multilevel을 사용하면 NRZ만큼 효율적이지 않음  
+     => 각 symbol은 오직 한 개의 비트만 표현: +A, -A, 0  
+     Log23=1.58bits -> 0.58의 정보량은 낭비됨
 - **8B/10B**
   : 입력 비트가 출력 비트로 매핑되면서 인코더는 이전 심벌로부터의 격차를 기억해 출력 패턴을 격차를 줄이는 방향으로 선택
 
@@ -90,16 +94,16 @@ comments: true
 
 - ASK
   : 0과 1을 나타나기 위해 2가지 진폭 사용
-- FSK:
-  두가지 이상의 주파수 사용
-- PSK:
-  정해진 시간 간격으로 0이나 180도 위상 변경  
+- FSK
+  : 두가지 이상의 주파수 사용
+- PSK
+  : 정해진 시간 간격으로 0이나 180도 위상 변경  
   => QPSK: 하나의 시간 간격에 2비트 전송하게 위상을 45도, 135도, 225도, 315도씩 바꿈  
-   <img width="250" alt="image" src="https://user-images.githubusercontent.com/48276682/106096664-529ead80-6179-11eb-8e78-43963e6a3bb8.png">
+   <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096664-529ead80-6179-11eb-8e78-43963e6a3bb8.png">
 
-- Gray Code:
-  어떻게 비트가 심벌에 할당되는지 -> 인접한 심벌들이 1bit씩만 다르게 배치 - 그렇지 않으면? QAM-16에서 하나의 심벌이 0111일 때 인접한 심벌이 1000이 되면 하나의 심벌 에러가 많은 비트의 에러로 이어짐 - Gray code를 이용하면 <u>심벌 하나를 잘못 복호화하더라도 1bit의 오류로 제한됨</u>
-      <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096689-61856000-6179-11eb-97b9-74ffd7bbde3f.png">
+- Gray Code
+  : 어떻게 비트가 심벌에 할당되는지 -> 인접한 심벌들이 1bit씩만 다르게 배치 - 그렇지 않으면? QAM-16에서 하나의 심벌이 0111일 때 인접한 심벌이 1000이 되면 하나의 심벌 에러가 많은 비트의 에러로 이어짐 - Gray code를 이용하면 <u>심벌 하나를 잘못 복호화하더라도 1bit의 오류로 제한됨</u>  
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096689-61856000-6179-11eb-97b9-74ffd7bbde3f.png">
 
 ### Multiplexing
 
@@ -109,7 +113,7 @@ comments: true
 
 #### FDMA (Frequency division multiplexing Access)
 
-:스펙트럼을 여러 개의 주파수 대역으로 구분하고 독점적으로 사용 ex) 라디오 방송
+: 스펙트럼을 여러 개의 주파수 대역으로 구분하고 독점적으로 사용 ex) 라디오 방송
 
 - 채널 사이에 간격(Guard band)가 존재하지만 인접한 채널 간에 어느 정도의 겹침은 존재 (전화망에서 사용)
 
@@ -120,12 +124,12 @@ comments: true
 - 하나의 고속 스트림이 여러 개의 저속 스트림으로 분할되어 subcarrier를 통해 병렬로 전송
 - DMT: OFDM의 구현 중 하나
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096731-719d3f80-6179-11eb-882b-5e0878444b0a.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096731-719d3f80-6179-11eb-882b-5e0878444b0a.png">
 
 #### TDMA (Time Division Multiplexing Access)
 
 : 사용자들은 차례에 따라서(Round-Robin) 주기적으로 각자가 작은 연속된 시간 동안에 전체 대역폭 가짐  
- <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096770-8083f200-6179-11eb-9eba-343d90306191.png">
+ <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096770-8083f200-6179-11eb-9eba-343d90306191.png">
 
 [Synchronous TDM] [Statistical (Asynchronous) TDM]  
  (=circuit switching) (=Packet switching)
@@ -148,8 +152,8 @@ comments: true
 - 디지털화 되면서 local loop는 아날로그의 마지막 기술이 됨
 - Switching office, local loops(modem), Trunk(multiplexing, high-speed link)로 구성됨
 - Local Loop는 dial line-> ADSL -> FTTH -> WIMAX로 진화  
-  <img width="200" alt="image" src="https://user-images.githubusercontent.com/48276682/106096860-a8735580-6179-11eb-8c08-e3baa5550262.png">
-  <img width="200" alt="image" src="https://user-images.githubusercontent.com/48276682/106096871-ad380980-6179-11eb-9fb8-6bb78646a716.png">
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096860-a8735580-6179-11eb-8c08-e3baa5550262.png">
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096871-ad380980-6179-11eb-9fb8-6bb78646a716.png">
 
 #### DSL (Digital Subscriber Lines)
 
@@ -163,14 +167,14 @@ comments: true
   => 전화 줄이 여러 개 있는 것처럼 parellel하게 전달
 - 사용자들은 업로드보다 다운로드를 더 많이 하기 때문에 <u>downstream에 더 할당</u>->**Asymmetric**
 - 각각의 채널 내에선 QAM을 사용해 4000심벌/초의 속도 사용 -> 높은 SNR: 15 bits/symbol, 낮은 SNR: 0,1,2
-  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096922-c04ad980-6179-11eb-8176-b9fe927a6cf2.png">
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096922-c04ad980-6179-11eb-8176-b9fe927a6cf2.png">
 
 #### FttH (Fiber to the Home)
 
 : 더 빠르고 나은 네트워크 서비스를 제공하기 위하여 local loop를 광섬유로 대체함
 
 - PON(Passive Optical Network) 구조 사용  
-  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106096953-cf318c00-6179-11eb-83ee-ec0410913e89.png">
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106096953-cf318c00-6179-11eb-83ee-ec0410913e89.png">
 
 - Upstream시 충돌을 피하기 위해 Arbitration protocol 필요  
   => 가정에서 전송하기 전에 미리 request packet을 보내고 End office에서 타임 슬롯을 배분, 이때 패킷을 보낼 때 충돌이 발생하면 다시 전달
@@ -195,13 +199,14 @@ comments: true
 : 높은 FDM에서의 FDM 방식 (for fiber optics)
 
 - FDM과의 차이점은 optic system은 수동적이고 신뢰도가 높음  
-  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106097003-e6707980-6179-11eb-9c33-8732b45dcaa2.png">
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106097003-e6707980-6179-11eb-9c33-8732b45dcaa2.png">
 
 #### TDM
 
 : TDM은 디지털 데이터만을 처리하고 local loop는 아날로그 신호를 사용하기 때문에 end office에서는 A->D의 전환이 필요하며 여기서 각각의 local loop가 output trunk로 결합됨
 
-- Codec: end office에서 Analog-> digital해주는 장비
+- Codec
+  : end office에서 Analog-> digital해주는 장비
 - PCM(Pulse Code Modulation) : Analog-> digital 샘플링  
   : 코덱은 초당 8000개의 샘플을 만드는데 4KHz의 전화 채널 bandwidth를 만드는데 충분
 - PCM -> TDM
@@ -209,7 +214,7 @@ comments: true
 #### T1 Trunks (p.148)
 
 : 일본과 북미에서 쓰이는 Multiplexing 방법  
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106097035-f425ff00-6179-11eb-878c-4ce90ad18f9d.png">
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106097035-f425ff00-6179-11eb-878c-4ce90ad18f9d.png">
 
 ---
 
@@ -234,7 +239,7 @@ comments: true
 
 - FDM+TDM 사용, AMPS와 비슷함(cells, freq. reuse, handoff), FDD 사용
 - SIM 등장: 가입자 정보와 계정정보 담음  
-  <img width="300" alt="image" src="https://user-images.githubusercontent.com/48276682/106097063-00aa5780-617a-11eb-82ab-731eb36aaa5e.png">
+  <img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106097063-00aa5780-617a-11eb-82ab-731eb36aaa5e.png">
 
 - 단말은 base station과 Air interface를 통해 교신
 - Cell base station은 각각 BSC에 연결, BSC는 무선 자원과 hand-off 관리
@@ -253,5 +258,6 @@ CDMA는 3G 기술의 핵심
 
 - Mobile phone network의 CDMA에서 두가지 핵심
 
-1. Asynchronous CDMA: 이전에는 Base station에서 칩 시퀀스를 같은 시간에 전송할 수 있었고 직교가 되도록 만들 수 있었지만 각 단말이 독립적으로 전송할 때 동기화하는 건 어려움  0은 아니지만 매우 작은 값을 갖게 함
+1. Asynchronous CDMA: 이전에는 Base station에서 칩 시퀀스를 같은 시간에 전송할 수 있었고 직교가 되도록 만들 수 있었지만 각 단말이 독립적으로 전송할 때 동기화하는 건 어려움  
+   => 0은 아니지만 매우 작은 값을 갖게 함
 2. Power control: 수신 신호의 세기에 반비례해 송신 신호를 조절
