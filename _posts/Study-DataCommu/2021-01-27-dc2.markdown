@@ -4,6 +4,8 @@ title: "[데이터통신] 2.Physical Layer-1"
 subtitle: ""
 categories: [Study/dataCommu]
 tags:
+use_math: true
+
 comments: true
 ---
 
