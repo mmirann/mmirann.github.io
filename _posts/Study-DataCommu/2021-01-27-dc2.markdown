@@ -9,7 +9,7 @@ use_math: true
 comments: true
 ---
 
-> 2. Physical Layer-1
+> 2 . Physical Layer-1
 
 ---
 
@@ -32,6 +32,8 @@ Data link layer에 bit-by-bit 전송을 에러 없이 전송하는 기능/ 0을 
 
 ---
 
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/48276682/106094672-bd4dea00-6175-11eb-828f-33482765fa6f.png">
+
 : 주기 T를 가진 임의의 주기 함수 g(t)를 사인과 코사인들의 합으로 구성할 수 있음  
 an,bn=n번째 harmonic항의 사인과 코사인 진폭  
 => 주기 T가 알려져 있고 진폭이 주어지면 시간에 대한 원래 함수를 구할 수 있음
@@ -40,9 +42,7 @@ an,bn=n번째 harmonic항의 사인과 코사인 진폭
 
 : Time Domain H(t)에 있는 문제를 더 쉽게 활용하기 위해서 푸리에를 사용하여 Frequency Domain H(f)로 바꿈
 
-    O(t)=(H*F)(t)
-    =
-    O(f)=F(f)*H(f)
+$[O(t)=(H*F)(t)]=[O(f)=F(f)*H(f)]$
 
 ---
 
@@ -58,15 +58,15 @@ Ex) 0,1,2,3 volt가 사용되면 signal element는 2비트 carry
 
 #### Nyquist Theorem
 
-$최대 데이터 전송률 = 2H\log_{10}V bits/sec$  
+Maximum data rate = $2H\log_{10}V bits/sec$  
 : noise를 고려하지 않음  
 위의 정리에 따라, 손실없이 환원하려면 고주파보다 2배로 sampling해야함!
 
 #### Shannon’s Theorem
 
-$$최대 데이터 전송률 = B\log_{2}(1+S/N)$$
-$$SNR(존재하는 열 잡음의 양, signal-to-noise ratio) = 10\log_{10}S/N //dB$$
-$$S/N = antilog (SNR/10)$$
+Maximum data rate = $B\log_{2}(1+S/N)$  
+SNR(signal-to-noise ratio) = $10\log_{10}S/N$//dB  
+$S/N = antilog (SNR/10)$
 
 ### 유도 전송 매체
 
@@ -97,10 +97,9 @@ $$S/N = antilog (SNR/10)$$
 5.  **광섬유**
 
 - Light source, transmission medium, detector 로 구성
-- 네트워크 백본에서 장거리 전송이나 고속 LAN, FttH(Fiber to the Home)과 같은 고속 전송망 등에 사용
-
-$$
-  power/recived power(손실률)) $$
+- 네트워크 백본에서 장거리 전송이나 고속 LAN, FttH(Fiber to the Home)과 같은 고속 전송망 등에 사용  
+   Attenuation in decibels = $10*log10(transmitted   
+power/recived power(손실률))$
 
 #### 광섬유 vs 동선
 
@@ -108,11 +107,14 @@ $$
 단점: 데미지 입기 쉬움, 본래 빛은 단방향 (양방향 위에선 두개의 광섬유 Or 두개의 대역폭), 피버 인터페이스 비쌈
 
 ### 무선 전송
+
 ---
+
 #### 전자기파 스펙트럼 (Electromagnetic Spectrum)
-* 주파수(f): Electromagnetic wave의 초당 진동수
-* 파장($\gamma$): 주파수의 연속된 최댓값(또는 최솟값)들 사이의 거리
-* 광속(c): 3x10^8m/sec (동선이나 광섬유에선 2/3로 느려짐)
+
+- 주파수(f): Electromagnetic wave의 초당 진동수
+- 파장($\gamma$): 주파수의 연속된 최댓값(또는 최솟값)들 사이의 거리
+- 광속(c): 3x10^8m/sec (동선이나 광섬유에선 2/3로 느려짐)
 
 $\gamma*f=c$
 
@@ -123,6 +125,8 @@ $df=cd\gamma/\gamma^2$
 - 대부분의 전송은 고효율을 위해 좁은 주파수 대역을 사용하지만 FHSS와DSSS과 같은 두 가지 변형은 넓은 대역 사용
 
 #### Spread Spectrum
+
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106094731-d48cd780-6175-11eb-8129-24e51829b116.png">
 
 : WLAN과 WPAN등의 무선 네트워크를 사용할 때 multipath fading과 noise을 피하기 위해 사용(시그널 간 간섭 해결)
 
@@ -135,9 +139,10 @@ $df=cd\gamma/\gamma^2$
 
 #### DSSS (Direct Sequence Spread Spectrum)
 
-:넓은 주파수 대역에 신호를 확산시킴
-=> 다수의 신호가 같은 대역폭을 공유 -> 대역폭효율적
+:넓은 주파수 대역에 신호를 확산시킴  
+=> 다수의 신호가 같은 대역폭을 공유 -> 대역폭효율적  
 // CDMA: 다수의 신호가 다수의 서로 다른 부호 부여 받음
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/48276682/106094773-e79fa780-6175-11eb-9558-aa62ffb04c69.png">
 
     Pseudorandom Numbers
     :c(t)가 1과 -1로 구성되었을 때
@@ -198,4 +203,3 @@ Ex. 네비게이션, GPS
 
 주류 통신은 cellular radio와 함께 지상파 광섬유이지만 일부 특수 용도의 경우 위성이 더 좋음
 위성을 사용할 땐 빠른 설치가 필요할 때, 지상 인프라 구축이 미비한 지역에서, broadcasting이 꼭 필요한 경우에 사용
-$$
