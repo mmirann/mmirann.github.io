@@ -2,7 +2,7 @@
 layout: post
 title: "[데이터통신] 1.Introduction"
 subtitle: ""
-categories: [Study/dataCommu]
+categories: [Study/DataCommu]
 tags:
 comments: true
 ---

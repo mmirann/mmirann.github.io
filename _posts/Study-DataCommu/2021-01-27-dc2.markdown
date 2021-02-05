@@ -2,7 +2,7 @@
 layout: post
 title: "[데이터통신] 2.Physical Layer-1"
 subtitle: ""
-categories: [Study/dataCommu]
+categories: [Study/DataCommu]
 tags:
 use_math: true
 
