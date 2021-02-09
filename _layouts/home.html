@@ -17,14 +17,16 @@ layout: default
     <div class="post-teaser">
       <header>
         <h1>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title }}
-          </a>
+          <small>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a></small
+          >
         </h1>
         <p class="meta">{{ post.date | date: "%B %-d, %Y" }}</p>
       </header>
       <div class="excerpt">
-        {{ post.excerpt }}
+        <h2 style="color: black">{{ post.excerpt }}</h2>
         <a class="button" href="{{ post.url | relative_url }}">
           {{ site.theme_settings.str_continue_reading }}
         </a>
