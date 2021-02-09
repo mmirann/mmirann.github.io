@@ -1,0 +1,176 @@
+---
+layout: post
+title: "[ESP32] ESP32 PWM (LED/서보모터)"
+subtitle: ""
+categories: [IoT/Arduino]
+tags: [IoT, ESP32]
+comments: true
+---
+
+> **ESP32 PWM 예제 **
+
+---
+
+ESP32는 GPIO34-39를 제외한 모든 핀을 PWM으로 사용할 수 있다. PWM을 활용해서 LED의 세기를 다르게 출력할 수 도 있고, 서보모터, 스텝모터, 피에조 스피커 등으로 활용 가능하다. 아두이노의 AnalogWrite와 같이 이용하면 되는데 아두이노와 달리 따로 설정해야하는 값들이 존재한다.
+
+- **Signal Frequency**: 1초에 몇번 ON/OFF를 할 것인가
+- **Resolution**: PWM 해상도, 8bit인 경우 0-256(2^8), 16bit인 경우 0-65535(2^16)로 세기 지정 가능
+- **Duty Cycle**: 세기
+- **PWM Channel**
+- **신호를 출력할 GPIO핀**: 출력 가능한 핀 모두 사용 가능
+
+위와 같은 값들을 설정해주어야 한다.
+
+> **PWM Channel**
+
+- LEDC Chan to Group/Channel/Timer Mapping
+- ledc: 0 => Group: 0, Channel: 0, Timer: 0
+- ledc: 1 => Group: 0, Channel: 1, Timer: 0
+- ledc: 2 => Group: 0, Channel: 2, Timer: 1
+- ledc: 3 => Group: 0, Channel: 3, Timer: 1
+- ledc: 4 => Group: 0, Channel: 4, Timer: 2
+- ledc: 5 => Group: 0, Channel: 5, Timer: 2
+- ledc: 6 => Group: 0, Channel: 6, Timer: 3
+- ledc: 7 => Group: 0, Channel: 7, Timer: 3
+- ledc: 8 => Group: 1, Channel: 0, Timer: 0
+- ledc: 9 => Group: 1, Channel: 1, Timer: 0
+- ledc: 10 => Group: 1, Channel: 2, Timer: 1
+- ledc: 11 => Group: 1, Channel: 3, Timer: 1
+- ledc: 12 => Group: 1, Channel: 4, Timer: 2
+- ledc: 13 => Group: 1, Channel: 5, Timer: 2
+- ledc: 14 => Group: 1, Channel: 6, Timer: 3
+- ledc: 15 => Group: 1, Channel: 7, Timer: 3
+
+PWM 채널은 위와 같이 16개의 아날로그 채널이 존재하는데 채널마다 할당된 타이머가 다르다. 여러 개의 아날로그 센서를 사용하는 경우 채널을 다르게 설정해야한다.
+
+> **Duty Cycle**
+
+![pwm](https://user-images.githubusercontent.com/48276682/107307701-85766900-6aca-11eb-8b2d-7e27b433515c.gif)
+
+Duty의 값에 따라 출력의 세기가 달라진다. 위의 사진에선 8bit의 resolution을 가질 때 dury cycle을 보여주고 있다. 100% duty cycle인 경우 8bit resolution의 최댓값인 analoyWrite(255)와 같은 걸 확인할 수 있다.
+
+---
+
+> **PWM 사용법**
+
+```c
+* ledcSetup(PWM_Channel_Number, Frequency, resolution)
+* ledcAttachPin(GPIO_PIN , CHANNEL)
+* ledcWrite(CHANNEL, DUTY_CYCLE)
+```
+
+위의 함수를 사용하여 PWM을 이용할 수 있다. ledcSetup을 사용해 채널과 주파수, 해상도를 설정하고 ledcAttachPin으로 설정한 채널의 출력을 어느 GPIO 핀으로 보낼 지 지정한다. 마지막으로 ledcWrite을 사용해 원하는 채널에 analog값을 전송한다.
+
+---
+
+> **PWM으로 LED 출력하기**
+
+```c
+const int ledPin = 16;
+const int freq = 5000;
+const int ledChannel = 0;
+const int resolution = 8;
+
+void setup() {
+
+  ledcSetup(ledChannel, freq, resolution);
+  ledcAttachPin(ledPin, ledChannel);
+}
+
+void loop() {
+
+  for (int i = 0; i < 256; i++) {
+    ledcWrite(ledChannel, i);
+    delay(10);
+  }
+  for (int i = 256; i > 0; i--) {
+    ledcWrite(ledChannel, i);
+    delay(10);
+  }
+}
+```
+
+LED를 D16에 연결한 후 ESP32보드를 선택해 업로드하면 어두워졌다가 밝아지는 것을 반복하는 LED를 확인할 수 있다.
+
+---
+
+> **PWM으로 서보모터 출력하기**
+
+```c
+const int servoPin = 23; //D23에 연결
+const int servoChannel = 1;
+const int freq = 50;
+const int resolution = 16;
+
+void setup() {
+
+  ledcSetup(servoChannel, freq, resolution);
+  ledcAttachPin(servoPin, servoChannel);
+}
+
+void loop() {
+
+  servoWrite(servoChannel, 90); //90도 회전
+  delay(1000);
+  servoWrite(servoChannel, 0); //원래 자리로
+  delay(1000);
+}
+
+
+void servoWrite(int ch, int deg)
+{
+  int duty = deg * 18.2 + 3277;
+
+  ledcWrite(ch, duty);
+}
+```
+
+서보모터는 Servo_ESP32라는 라이브러리가 따로 존재해 쉽게 서보모터를 제어할 수 있다. 하지만 ledc만을 이용해서 서보모터를 어렵지 않게 제어할 수 있다. 원리는 50Hz로 주파수를 설정하고 duty를 변경하며 서보모터의 출력을 제어하면 duty값에 따라 제어하는 서보모터의 각도를 조정할 수 있다. 50Hz에 16bit의 해상도를 사용하면 duty가 3277인 경우 1ms출력될때 0도, 4915인 경우 1.5ms 출력되고 90도, 6554인 경우 2ms출력되고 180도로 회전한다.
+
+---
+
+> **아날로그 출력 여러 개 사용하기**
+
+아날로그 출력을 여러 개 사용할 땐 채널이 겹치지 않도록 주의해야한다. 또한 LED와 서보모터가 <u> 사용하는 주파수와 해상도 모두 다르기 때문에 다른 타이머를 사용해야 한다.</u> 예를 들어 위의 pwm channel을 보면 채널 0과 1은 같은 타이머를 사용한다. 따라서 서보모터와 led의 채널 0과 1을 부여하면 두 개 중 하나의 센서는 작동하지 않는다. 그러므로 채널 0과 2와 같이 다른 타이머를 사용해야한다. 아래는 LED와 서보모터를 한 번에 제어하는 코드이다. 서보모터가 90도로 회전했다가 제자리로 간 후 LED가 켜졌다 꺼지도록 하였다.
+
+```c
+const int servoPin = 23;
+const int servoChannel=0;
+const int ledPin = 16;
+const int ledChannel = 2;
+
+void setup(){
+    ledcSetup(servoChannel, 50, 16);
+  ledcAttachPin(servoPin, servoChannel);
+
+    ledcSetup(ledChannel, 5000, 8);
+  ledcAttachPin(ledPin, ledChannel);
+
+}
+ void loop(){
+
+  servoWrite(servoChannel, 90);
+  delay(1000);
+  servoWrite(servoChannel, 0);
+  delay(1000);
+  ledcWrite(ledChannel, 100);
+  delay(1000);
+  ledcWrite(ledChannel, 0);
+  delay(1000);
+
+}
+
+void servoWrite(int ch, int deg)
+{
+  int duty = deg*18.2 + 3277;
+
+  ledcWrite(ch, duty);
+}
+```
+
+---
+
+#### Reference
+
+- https://github.com/espressif/arduino-esp32
+- https://arsviator.blogspot.com/2018/11/esp32-pwm.html
