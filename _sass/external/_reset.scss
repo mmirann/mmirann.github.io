@@ -138,7 +138,12 @@ h1 {
   color: #7eae36;
 }
 h2 {
-  color: #7eae36;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #147ba7;
+  border-left: 4px solid #147ba7;
+  padding-left: 0.5rem;
+  //color: #7eae36;
 }
 h3 {
   color: #000000;
@@ -263,7 +268,7 @@ pre {
   overflow: auto;
   font-size: 80%;
   line-height: 1.45;
-  background-color: #f2f2f2;
+  background-color: #dbdbdb;
   border-radius: 3px;
 }
 

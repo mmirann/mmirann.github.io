@@ -7,7 +7,7 @@ tags: [IoT, ESP32]
 comments: true
 ---
 
-> **ESP32 PWM 예제 **
+> **ESP32 PWM 사용법, 예제**
 
 ---
 
@@ -16,12 +16,14 @@ ESP32는 GPIO34-39를 제외한 모든 핀을 PWM으로 사용할 수 있다. PW
 - **Signal Frequency**: 1초에 몇번 ON/OFF를 할 것인가
 - **Resolution**: PWM 해상도, 8bit인 경우 0-256(2^8), 16bit인 경우 0-65535(2^16)로 세기 지정 가능
 - **Duty Cycle**: 세기
-- **PWM Channel**
+- **PWM Channel**: 0-15번의 아날로그 채널
 - **신호를 출력할 GPIO핀**: 출력 가능한 핀 모두 사용 가능
 
 위와 같은 값들을 설정해주어야 한다.
 
-> **PWM Channel**
+---
+
+## PWM Channel
 
 - LEDC Chan to Group/Channel/Timer Mapping
 - ledc: 0 => Group: 0, Channel: 0, Timer: 0
@@ -43,7 +45,7 @@ ESP32는 GPIO34-39를 제외한 모든 핀을 PWM으로 사용할 수 있다. PW
 
 PWM 채널은 위와 같이 16개의 아날로그 채널이 존재하는데 채널마다 할당된 타이머가 다르다. 여러 개의 아날로그 센서를 사용하는 경우 채널을 다르게 설정해야한다.
 
-> **Duty Cycle**
+## Duty Cycle
 
 ![pwm](https://user-images.githubusercontent.com/48276682/107307701-85766900-6aca-11eb-8b2d-7e27b433515c.gif)
 
@@ -51,7 +53,7 @@ Duty의 값에 따라 출력의 세기가 달라진다. 위의 사진에선 8bit
 
 ---
 
-> **PWM 사용법**
+## PWM 사용법
 
 ```c
 * ledcSetup(PWM_Channel_Number, Frequency, resolution)
@@ -63,7 +65,7 @@ Duty의 값에 따라 출력의 세기가 달라진다. 위의 사진에선 8bit
 
 ---
 
-> **PWM으로 LED 출력하기**
+## PWM으로 LED 출력하기
 
 ```c
 const int ledPin = 16;
@@ -94,7 +96,7 @@ LED를 D16에 연결한 후 ESP32보드를 선택해 업로드하면 어두워�
 
 ---
 
-> **PWM으로 서보모터 출력하기**
+## PWM으로 서보모터 출력하기
 
 ```c
 const int servoPin = 23; //D23에 연결
@@ -125,13 +127,13 @@ void servoWrite(int ch, int deg)
 }
 ```
 
-서보모터는 Servo_ESP32라는 라이브러리가 따로 존재해 쉽게 서보모터를 제어할 수 있다. 하지만 ledc만을 이용해서 서보모터를 어렵지 않게 제어할 수 있다. 원리는 50Hz로 주파수를 설정하고 duty를 변경하며 서보모터의 출력을 제어하면 duty값에 따라 제어하는 서보모터의 각도를 조정할 수 있다. 50Hz에 16bit의 해상도를 사용하면 duty가 3277인 경우 1ms출력될때 0도, 4915인 경우 1.5ms 출력되고 90도, 6554인 경우 2ms출력되고 180도로 회전한다.
+서보모터는 Servo_ESP32라는 라이브러리가 따로 존재해 쉽게 서보모터를 제어할 수 있다. 하지만 ledc만을 이용해서 서보모터를 어렵지 않게 제어할 수 있다. 50Hz로 주파수를 설정하고 duty를 변경하며 서보모터의 출력을 제어하면 duty값에 따라 제어하는 서보모터의 각도를 조정할 수 있다. 50Hz에 16bit의 해상도를 사용하면 duty가 3277인 경우 1ms출력될때 0도, 4915인 경우 1.5ms 출력되고 90도, 6554인 경우 2ms출력되고 180도로 회전한다.
 
 ---
 
-> **아날로그 출력 여러 개 사용하기**
+## 아날로그 출력 여러 개 사용하기
 
-아날로그 출력을 여러 개 사용할 땐 채널이 겹치지 않도록 주의해야한다. 또한 LED와 서보모터가 <u> 사용하는 주파수와 해상도 모두 다르기 때문에 다른 타이머를 사용해야 한다.</u> 예를 들어 위의 pwm channel을 보면 채널 0과 1은 같은 타이머를 사용한다. 따라서 서보모터와 led의 채널 0과 1을 부여하면 두 개 중 하나의 센서는 작동하지 않는다. 그러므로 채널 0과 2와 같이 다른 타이머를 사용해야한다. 아래는 LED와 서보모터를 한 번에 제어하는 코드이다. 서보모터가 90도로 회전했다가 제자리로 간 후 LED가 켜졌다 꺼지도록 하였다.
+아날로그 출력을 여러 개 사용할 땐 채널이 겹치지 않도록 주의해야한다. 또한 LED와 서보모터가 <u> 사용하는 주파수와 해상도 모두 다르기 때문에 다른 타이머를 사용해야 한다.</u> 위의 pwm channel을 보면 채널 0과 1은 같은 타이머를 사용한다. 따라서 서보모터와 led의 채널 0과 1을 부여하면 두 개 중 하나의 센서는 작동하지 않는다. 그러므로 채널 0과 2와 같이 다른 타이머를 사용해야한다. 아래는 LED와 서보모터를 한 번에 제어하는 코드이다. 서보모터가 90도로 회전했다가 제자리로 간 후 LED가 켜졌다 꺼지도록 하였다.
 
 ```c
 const int servoPin = 23;
@@ -172,5 +174,5 @@ void servoWrite(int ch, int deg)
 
 #### Reference
 
-- https://github.com/espressif/arduino-esp32
-- https://arsviator.blogspot.com/2018/11/esp32-pwm.html
+- <https://github.com/espressif/arduino-esp32>
+- <https://arsviator.blogspot.com/2018/11/esp32-pwm.html>
