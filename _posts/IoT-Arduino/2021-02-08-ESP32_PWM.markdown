@@ -7,7 +7,7 @@ tags: [IoT, ESP32]
 comments: true
 ---
 
-> **ESP32 PWM 사용법, 예제**
+## ESP32 PWM 사용법, 예제
 
 ---
 
@@ -44,6 +44,8 @@ ESP32는 GPIO34-39를 제외한 모든 핀을 PWM으로 사용할 수 있다. PW
 - ledc: 15 => Group: 1, Channel: 7, Timer: 3
 
 PWM 채널은 위와 같이 16개의 아날로그 채널이 존재하는데 채널마다 할당된 타이머가 다르다. 여러 개의 아날로그 센서를 사용하는 경우 채널을 다르게 설정해야한다.
+
+---
 
 ## Duty Cycle
 
