@@ -252,14 +252,14 @@ pre {
 /* 코드 블럭 추가 */
 .highlight,
 pre.highlight {
-  background: #282c34;
+  background: #222222;
   color: #abb2bf;
 }
 .highlight pre {
-  background: #282c34;
+  background: #222222;
 }
 .highlight .hll {
-  background: #282c34;
+  background: #222222;
 }
 .highlight .c {
   color: #5c6370;
@@ -454,27 +454,26 @@ pre.highlight {
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
-/*
 code {
-  color: #147ba7;
+  color: #333333;
   // padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   margin: 0;
   font-size: 80%;
-  //font-weight: bold;
-  background-color: #f9f9f9;
-  // border-radius: 3px; 
+  font-weight: bold;
+  background-color: #eeeeee;
+  // border-radius: 3px;
 }
 pre {
   padding: 16px;
   overflow: auto;
   font-size: 80%;
   line-height: 1.45;
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
   border-radius: 3px;
 }
-*/
+
 kbd {
   display: inline-block;
   padding: 3px 5px;
