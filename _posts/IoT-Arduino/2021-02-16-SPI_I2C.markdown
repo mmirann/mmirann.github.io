@@ -1,0 +1,42 @@
+---
+layout: post
+title: "[Arduino] SPI 통신과 I2C 통신"
+subtitle: ""
+categories: [IoT/Arduino]
+tags: [IoT]
+comments: true
+---
+
+## <span style="color:black"> SPI 통신과 I2C 통신의 장점 및 단점 </span>
+
+---
+
+## SPI 통신
+
+* SPI point to point 연결 
+![image](https://gblobscdn.gitbook.com/assets%2F-LLgVUyGkRwpxJv5U2az%2F-LS_vdxQfmNt6NQRS_VT%2F-LS_vh8TNcTDJytT9iUO%2Fspi-1-slave.png?alt=media&token=0a124bdb-0b45-40c3-82fa-119c5d666e81)
+
+* SPI Master-slave 연결
+![image](https://gblobscdn.gitbook.com/assets%2F-LLgVUyGkRwpxJv5U2az%2F-LS_vdxQfmNt6NQRS_VT%2F-LS_vnZfgdn58_uMjvXp%2Fspi-3-slave.png?alt=media&token=5a5a483c-ad88-45b9-8a0c-54f19c6abffb)
+
+SPI 통신은 MOSI(Master Out Slave In), MISO(Master In Slave Out) 선으로 데이터 송수신을 분리해 통신하기 때문에 I2C 통신 방식보다 통신 속도가 빠르고 전력 소모가 적다. 따라서 동시에 송수신 또한 가능하다. (속도: 10Mbs~20Mbs) 센서를 더 추가하는 경우 Slave 갯수 만큼 SS 라인이 더 필요하다. 또한 SPI Bus라인에 하나의 Master만 존재해야한다. 이더넷 연결이나 메모리카드와 같은 **고속 통신**이 필요한 경우 많이 쓰인다.
+
+## I2C 통신
+![image](https://gblobscdn.gitbook.com/assets%2F-LLgVUyGkRwpxJv5U2az%2F-LS_vdxQfmNt6NQRS_VT%2F-LS_wHgqbb3qugMtRK30%2Fi2c-multi-master.png?alt=media&token=2e67c143-a6c3-4aa2-b097-14d47cada4db)
+
+I2C 통신 방식은 위의 사진에서 볼 수 잇듯이 SDA 하나의 선으로 양방향 데이터 송수신을 한다. 따라서 SPI 방식보다는 상대적으로 느리고, 한 번에 양쪽에서 데이터 송수신이 불가하다. 센서를 더 추가하는 경우 버스라인에 데이터 선만 연결하면 된다. 고속 연결이 필요하지 않은 일반적인 경우에 I2C 방식을 많이 사용한다. 
+
+## I2C VS SPI 
+
+|                | SPI                                                | I2C                                                         |
+| -------------- | -------------------------------------------------- | ----------------------------------------------------------- |
+| 핀 드라이브    | Push-pull                                          | Open drain                                                  |
+| Signal lines   | 4                                                  | 2                                                           |
+| 최대 속도      | 10-100Mbps                                         | 400 kbps in fast-mode(high-speed mode에선 3.4Mbps까지 가능) |
+| 주변 기기 갯수 | Master의 SS라인에 사용할 수 있는 핀 수에 의해 제한 | 112(7-bit addressing)                                       |
+| Multi Master   | X                                                  | O                                                           |
+| Flow control   | X                                                  | O                                                           |
+
+
+## Reference
+  - <https://articles.saleae.com/logic-analyzers/spi-vs-i2c-protocol-differences-and-things-to-consider>

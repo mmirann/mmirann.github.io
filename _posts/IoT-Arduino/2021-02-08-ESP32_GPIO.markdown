@@ -7,7 +7,7 @@ tags: [IoT, Arduino]
 comments: true
 ---
 
-## ESP32 PIN 별 사용법
+> ESP32 PIN 별 사용법
 
 ---
 
