@@ -7,10 +7,6 @@ tags: [IoT, ESP32]
 comments: true
 ---
 
-## ESP32 PWM 사용법, 예제
-
----
-
 ESP32는 GPIO34-39를 제외한 모든 핀을 PWM으로 사용할 수 있다. PWM을 활용해서 LED의 세기를 다르게 출력할 수 도 있고, 서보모터, 스텝모터, 피에조 스피커 등으로 활용 가능하다. 아두이노의 AnalogWrite와 같이 이용하면 되는데 아두이노와 달리 따로 설정해야하는 값들이 존재한다.
 
 - **Signal Frequency**: 1초에 몇번 ON/OFF를 할 것인가

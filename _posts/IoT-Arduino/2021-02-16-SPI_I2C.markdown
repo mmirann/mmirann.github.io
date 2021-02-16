@@ -7,9 +7,7 @@ tags: [IoT]
 comments: true
 ---
 
-## SPI 통신과 I2C 통신의 장점 및 단점
-
----
+아두이노에 센서를 연결할 때 주로 사용하는 시리얼 통신방식은 SPI 통신과 I2C 통신이다. 두 통신 모두 동기식 통신 방식이고 비동기식 통신 방식(Clock X)으로는 UART 통신이 있는데 본 포스팅에선 동기식 통신 방식인 SPI 통신과 I2C 통신에 대해 알아본다.
 
 ## SPI 통신
 
@@ -19,13 +17,13 @@ comments: true
 - SPI Master-slave 연결
   ![image](https://gblobscdn.gitbook.com/assets%2F-LLgVUyGkRwpxJv5U2az%2F-LS_vdxQfmNt6NQRS_VT%2F-LS_vnZfgdn58_uMjvXp%2Fspi-3-slave.png?alt=media&token=5a5a483c-ad88-45b9-8a0c-54f19c6abffb)
 
-SPI 통신은 MOSI(Master Out Slave In), MISO(Master In Slave Out) 선으로 데이터 송수신을 분리해 통신하기 때문에 I2C 통신 방식보다 통신 속도가 빠르고 전력 소모가 적다. 따라서 동시에 송수신 또한 가능하다. (속도: 10Mbs~20Mbs) 센서를 더 추가하는 경우 Slave 갯수 만큼 SS 라인이 더 필요하다. 또한 SPI Bus라인에 하나의 Master만 존재해야한다. 이더넷 연결이나 메모리카드와 같은 **고속 통신**이 필요한 경우 많이 쓰인다.
+SPI(Serial Peripheral Interface) 통신은 MOSI(Master Out Slave In), MISO(Master In Slave Out) 선으로 데이터 송수신을 분리해 통신하기 때문에 I2C 통신 방식보다 통신 속도가 빠르고 전력 소모가 적다. 따라서 동시에 송수신 또한 가능하다. (속도: 10Mbs~20Mbs) 센서를 더 추가하는 경우 Slave 갯수 만큼 SS 라인이 더 필요하다. 또한 SPI Bus라인에 하나의 Master만 존재해야한다. 이더넷 연결이나 메모리카드와 같은 **고속 통신**이 필요한 경우 많이 쓰인다.
 
 ## I2C 통신
 
 ![image](https://gblobscdn.gitbook.com/assets%2F-LLgVUyGkRwpxJv5U2az%2F-LS_vdxQfmNt6NQRS_VT%2F-LS_wHgqbb3qugMtRK30%2Fi2c-multi-master.png?alt=media&token=2e67c143-a6c3-4aa2-b097-14d47cada4db)
 
-I2C 통신 방식은 위의 사진에서 볼 수 잇듯이 SDA 하나의 선으로 양방향 데이터 송수신을 한다. 따라서 SPI 방식보다는 상대적으로 느리고, 한 번에 양쪽에서 데이터 송수신이 불가하다. 센서를 더 추가하는 경우 버스라인에 데이터 선만 연결하면 된다. 고속 연결이 필요하지 않은 일반적인 경우에 I2C 방식을 많이 사용한다.
+I2C(Inter-intergrated Circuit) 통신 방식은 위의 사진에서 볼 수 잇듯이 SDA 하나의 선으로 양방향 데이터 송수신을 한다. 따라서 SPI 방식보다는 상대적으로 느리고, 한 번에 양쪽에서 데이터 송수신이 불가하다. 센서를 더 추가하는 경우 버스라인에 데이터 선만 연결하면 된다. 고속 연결이 필요하지 않은 일반적인 경우에 I2C 방식을 많이 사용한다.
 
 ## I2C VS SPI
 
