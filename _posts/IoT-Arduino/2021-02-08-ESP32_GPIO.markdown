@@ -7,7 +7,7 @@ tags: [IoT, Arduino]
 comments: true
 ---
 
-> ESP32 PIN 별 사용법
+## <span style="color:#383838">  ESP32 PIN 별 사용법 </span>
 
 ---
 
@@ -193,6 +193,6 @@ The ESP32 also features a built-in hall effect sensor that detects changes in th
 
 > 아두이노 IDE에서 사용하는 경우 핀 번호 D23 (pin15/GPIO 23)핀은 '23'으로 사용하면 됨
 
-## Reference
+### Reference
 
 - https://github.com/espressif/arduino-esp32

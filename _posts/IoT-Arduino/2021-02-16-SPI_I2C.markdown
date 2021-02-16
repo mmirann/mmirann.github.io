@@ -7,7 +7,7 @@ tags: [IoT]
 comments: true
 ---
 
-## <span style="color:black"> SPI 통신과 I2C 통신의 장점 및 단점 </span>
+## <span style="color:#383838"> SPI 통신과 I2C 통신의 장점 및 단점 </span>
 
 ---
 
@@ -38,5 +38,5 @@ I2C 통신 방식은 위의 사진에서 볼 수 잇듯이 SDA 하나의 선으�
 | Flow control   | X                                                  | O                                                           |
 
 
-## Reference
+### Reference
   - <https://articles.saleae.com/logic-analyzers/spi-vs-i2c-protocol-differences-and-things-to-consider>
