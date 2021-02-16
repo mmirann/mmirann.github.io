@@ -1,14 +1,10 @@
 ---
 layout: post
-title: "[ESP32] ESP32 GPIO"
+title: "[ESP32] ESP32 GPIO PIN 별 사용법"
 subtitle: ""
 categories: [IoT/Arduino]
 tags: [IoT, Arduino]
 comments: true
----
-
-## ESP32 PIN 별 사용법
-
 ---
 
 ESP 모듈은 블루투스, 와이파이를 기본적으로 사용할 수 있으며 36개의 GPIO가 사용 가능하다. 또한 별도로 보드 라이브러리를 설치하기만 하면 아두이노 IDE로 업로드가 가능하다.
