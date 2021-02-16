@@ -7,17 +7,19 @@ tags: [IoT, ESP32]
 comments: true
 ---
 
-## <span style="color:#383838"> HardwareSerial과 SoftwareSerial을 이용한 DFPlayer </span>
+## HardwareSerial과 SoftwareSerial을 이용한 DFPlayer
 
 ---
 
 ## 0. 준비
-ESP32에서 DFPlayer를 사용하는 방법은 아두이노와 비슷하다. DFPlayer를 사용하기 전, 3W 이하의 스피커가 필요하다. 또한 DFPlayer에 장착된 SD카드에는 MP3 폴더 안에 `0001.mp3` 형식의 파일이 들어있어야 한다. 스피커와 DFPlayer, ESP32를 연결하고 SD카드를 장착하면 준비 끝.  
 
-그리고 아두이노처럼 SoftwareSerial을 통해 DFPlayer를 사용할 수 있다. 아두이노 우노는 하드웨어 시리얼 1개를 제공하고 SoftwareSerial을 통해 추가적으로 시리얼이 사용가능했다. 그런데 ESP32는 하드웨어 시리얼 3개를 제공하기 때문에 굳이 SoftwareSerial을 설치해서 사용할 필요는 없다. 그래도 SoftwareSerial을 사용하는 방법과 HardwareSerial 사용하는 방법을 모두 다뤄볼 것이다. 
+ESP32에서 DFPlayer를 사용하는 방법은 아두이노와 비슷하다. DFPlayer를 사용하기 전, 3W 이하의 스피커가 필요하다. 또한 DFPlayer에 장착된 SD카드에는 MP3 폴더 안에 `0001.mp3` 형식의 파일이 들어있어야 한다. 스피커와 DFPlayer, ESP32를 연결하고 SD카드를 장착하면 준비 끝.
+
+그리고 아두이노처럼 SoftwareSerial을 통해 DFPlayer를 사용할 수 있다. 아두이노 우노는 하드웨어 시리얼 1개를 제공하고 SoftwareSerial을 통해 추가적으로 시리얼이 사용가능했다. 그런데 ESP32는 하드웨어 시리얼 3개를 제공하기 때문에 굳이 SoftwareSerial을 설치해서 사용할 필요는 없다. 그래도 SoftwareSerial을 사용하는 방법과 HardwareSerial 사용하는 방법을 모두 다뤄볼 것이다.
 
 ## 1. 라이브러리 설치
-ESP32는 기본적으로 SoftwareSerial을 제공하지 않기 때문에 따로 다운받아야한다. HardwareSerial은 기본적으로 ESP32에서 제공하기 때문에, 아두이노에서 SoftwareSerial을 따로 설치하지 않은 것처럼 추가적으로 설치할 필요없다. 따라서 HardwareSerial로 제어하고 싶은 경우는 아래 라이브러리를 설치할 필요는 없다. 
+
+ESP32는 기본적으로 SoftwareSerial을 제공하지 않기 때문에 따로 다운받아야한다. HardwareSerial은 기본적으로 ESP32에서 제공하기 때문에, 아두이노에서 SoftwareSerial을 따로 설치하지 않은 것처럼 추가적으로 설치할 필요없다. 따라서 HardwareSerial로 제어하고 싶은 경우는 아래 라이브러리를 설치할 필요는 없다.
 
 ![image](https://user-images.githubusercontent.com/48276682/107478282-8e476780-6bbc-11eb-8a98-e052bec5ac35.png)
 
@@ -26,7 +28,7 @@ ESP32는 기본적으로 SoftwareSerial을 제공하지 않기 때문에 따로 
 
 ## 2. 코드 업로드
 
-DFPlayer를 ESP32의 22,23번 핀과 연결하고 5V와 GND에 연결하였다. 스피커는 DFPlayer에 연결하였다. 
+DFPlayer를 ESP32의 22,23번 핀과 연결하고 5V와 GND에 연결하였다. 스피커는 DFPlayer에 연결하였다.
 
 > **HardwareSerial을 사용하는 경우**
 
@@ -36,11 +38,11 @@ DFPlayer를 ESP32의 22,23번 핀과 연결하고 5V와 GND에 연결하였다. 
 #define DF_rxPin 23
 #define DF_txPin 22
 HardwareSerial dfSerial(2); //HardwareSerial 이름 정의
-DFRobotDFPlayerMini MP3Player; 
+DFRobotDFPlayerMini MP3Player;
 void setup () {
 
   dfSerial.begin(9600,SERIAL_8N1,DF_txPin,DF_rxPin); //통신속도, UART모드, RX핀, TX핀
-  MP3Player.begin(dfSerial); 
+  MP3Player.begin(dfSerial);
 }
 
 void loop () {
@@ -54,16 +56,15 @@ void loop () {
 
 > **SoftwwareSerial을 사용하는 경우**
 
-
 ```c
 #include <SoftwareSerial.h>
 #include <DFRobotDFPlayerMini.h>
 SoftwareSerial mp3Serial(22, 23); //Esp32의 22,23핀을 mp3용 시리얼 통신으로 지정
-DFRobotDFPlayerMini MP3Player; 
+DFRobotDFPlayerMini MP3Player;
 void setup () {
-  
+
   mp3Serial.begin (9600); //mp3용 시리얼 포트 시작
-  MP3Player.begin(mp3Serial); 
+  MP3Player.begin(mp3Serial);
 }
 
 void loop () {
@@ -75,7 +76,7 @@ void loop () {
 }
 ```
 
-위의 코드는 SD카드에 있는 0002.mp3 파일을 3초동안 재생한다. 
+위의 코드는 SD카드에 있는 0002.mp3 파일을 3초동안 재생한다.
 
 ---
 
