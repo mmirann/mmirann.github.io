@@ -17,6 +17,8 @@ comments: true
 
 위의 링크에 하드웨어 개발 가이드가 나와있는데 발행된지 좀 오래되어 해당 가이드보다는 다른 업체들에서 올려놓은 코드를 참고하며 개발하는 게 더 도움이 됐다.
 
+<br>
+
 ## 개발 환경 셋팅
 
 엔트리의 [Entryjs](https://github.com/entrylabs/entryjs), [Entry-hw](https://github.com/entrylabs/entry-hw) 레포지토리를 클론해야한다. 브런치는 반드시 `Entry-hw`에서 개발해야한다. 필요한 블록을 다 구현했다면 Entryjs, Entry-hw 모두 엔트리 측에 PR을 요청한다. 컨펌되면 머지되고, 정기반영은 한달에 한번, 매달 마지막 주 목요일에 최종적으로 반영된다.
@@ -35,6 +37,8 @@ npm install --global --production windows-build-tools
 ```
 npm install --global --production windows-build-tools@4.0.0
 ```
+
+<br>
 
 ## 구현 위치
 
