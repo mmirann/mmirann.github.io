@@ -1,0 +1,58 @@
+---
+layout: post
+title: "엔트리 하드웨어 개발일지 #1"
+subtitle: "환경 구축"
+categories: [Project/Entry]
+tags: [entry]
+comments: true
+---
+
+![logo](https://user-images.githubusercontent.com/48276682/109602600-c4e12400-7b63-11eb-9bf1-0cb5b8de3ffe.png)
+
+엔트리는 소프트웨어 교육 플랫폼으로 아래의 사진처럼 블록을 이용해 쉽게 코딩할 수 있는 환경을 지원한다. 단순한 흐름제어부터 시작해서 데이터분석과 인공지능 기능까지 제공한다. 추가적으로 하드웨어를 개발하여 등록하면 엔트리 플랫폼에서 자체 하드웨어를 이용한 블록 코딩 또한 가능하다.
+
+<img width="1552" alt="image" src="https://user-images.githubusercontent.com/48276682/109602479-83507900-7b63-11eb-98c9-abfc0a379c59.png">
+
+[엔트리 하드웨어 개발 가이드](https://entrylabs.github.io/docs/guide/entry-hw/2016-05-01-getting_started.html)
+
+위의 링크에 하드웨어 개발 가이드가 나와있는데 발행된지 좀 오래되어 해당 가이드보다는 다른 업체들에서 올려놓은 코드를 참고하며 개발하는 게 더 도움이 됐다.
+
+## 개발 환경 셋팅
+
+엔트리의 [Entryjs](https://github.com/entrylabs/entryjs), [Entry-hw](https://github.com/entrylabs/entry-hw) 레포지토리를 클론해야한다. 브런치는 반드시 `Entry-hw`에서 개발해야한다. 필요한 블록을 다 구현했다면 Entryjs, Entry-hw 모두 엔트리 측에 PR을 요청한다. 컨펌되면 머지되고, 정기반영은 한달에 한번, 매달 마지막 주 목요일에 최종적으로 반영된다.
+
+개발 환경 셋팅은 가이드를 따라 포크한 레포지토리에서 `npm install`을 통해 의존성 모듈을 설치하면 된다. 당연히 `node js`설치가 되어있어야 한다. MAC 환경, 윈도우 환경 모두 진행해보았는데 환경 셋팅에서 공통적으로 문제가 발생한 구간은 시리얼 포트 라이브러리 빌드 환경 설치 부분이었다.
+
+```
+# 맥
+npm install --global node-gyp
+# 윈도우
+npm install --global --production windows-build-tools
+```
+
+맥 환경에서는 `npm install` 대신 `yarn`으로 처음부터 설치를 진행했더니 에러가 없어졌다. 윈도우 환경에선 두 대의 기기에서 실행해보았는데 한 대의 기기에선 동일하게 `yarn`으로 설치를 진행했더니 해결되었고, 다른 한대의 기기에선 기존에 설치된 Visual Studio와 충돌하여 오류가 발생하였다. 버전 충돌로 인한 `windows-build-tools`이 설치가 안되는 문제였기 때문에 아래 명령어로 실행했더니 정상적으로 설치를 마칠 수 있었다.
+
+```
+npm install --global --production windows-build-tools@4.0.0
+```
+
+## 구현 위치
+
+레포지토리는 크게 아래의 두개로 나뉜다.
+
+- Entry js - 하드웨어 블록 개발(엔트리에서 보이는 블록 구현)
+- Entry hw - 하드웨어 명세 작성, 펌웨어 통신 파트, 펌웨어
+
+`Entry js`에서 구현해야할 블록의 파일은 `src/playground/blocks/hardware/block_(하드웨어명).js`에 위치해 있다.
+
+`Entry hw`에서 구현할 파일은 세개로 나뉜다.
+
+- 모듈 파일 `app/modules/` - 하드웨어와 시리얼 통신으로 주고받을 버퍼를 생성하는 `모듈명.js`파일과 모듈의 속성을 정의하는 `모듈명.json`파일로 구성
+- 펌웨어 파일 `app/firmwares/`- 하드웨어에 탑재되는 펌웨어, 모듈에서 만든 버퍼를 읽어와 하드웨어 동작
+- 드라이버 파일 `app/drivers/` - 아래 창의 드라이버 설치에 실행될 파일
+
+![](https://entrylabs.github.io/docs/images/tutorial/tutorial11.png)
+
+### Reference
+
+- <https://entrylabs.github.io/docs/guide/basic/setting_environment.html#SerialPort-라이브러리-빌드-환경-설치>
