@@ -1,0 +1,131 @@
+---
+layout: post
+title: "엔트리 하드웨어 개발 일지 #2"
+subtitle: "Entry-hw 파일 작성(.js, .json)"
+categories: [Project/Entry]
+tags: [entry]
+comments: true
+---
+
+![logo](https://user-images.githubusercontent.com/48276682/109602600-c4e12400-7b63-11eb-9bf1-0cb5b8de3ffe.png)
+
+개발 환경 구축까지 마쳤으면 이제 하드웨어 블록 개발을 위해서 모듈의 명세를 작성해야 한다. 전에 포스팅에서 구현 위치에 대해 알아보았다. 이제 그 구현 위치에서 파일들을 생성하고 작성하는 것에 대해 다뤄보겠다. 우선 `Entry-hw`에 있는 모듈에 대해서 다룬다. 참고할 코드는 엔트리에서 제공하는 <point>아두이노 확장 보드</point>이다. 기본적으로 led, 서보모터, 초음파 센서 등을 지원한다.
+
+## .js 파일 작성
+
+하드웨어와 시리얼 통신하기 위해 블록에서 넘어온 명령을 버퍼로 만들어 펌웨어에 넘겨주고, 펌웨어에서 받아온 리턴 값을 다시 엔트리 인터페이스로 넘겨주는 다리와 같은 역할을 한다. 아두이노 확장 보드의 js 파일인 `arduinoExt.js`파일의 코드를 살펴보겠다. 특징적으로 작성해야 하는 부분은 다음과 같다.
+
+### 센서 정보
+
+- `sensorTypes`: entryjs에 구현한 block의 sensorType과 동일하게 작성한다. 센서 타입에 따라 만들어지는 버퍼가 다르기 때문에 센서별로 정의한다.
+- `sensorData`: 명령 타입이 GET인 경우 하드웨어로부터 받아오는 값을 저장한다. 아두이노 확장 보드의 경우 `ULTRASONIC`, `DIGITAL` 등을 가지고 있다.
+
+### handleLocalData
+
+하드웨어에서 온 데이터를 처리한다. 즉, GET인 경우 sensorData에 저장할 값을 파싱한다. 아두이노 확장 보드에선 `FLOAT` 타입과 `SHORT`(int) 타입만 있는데 `STRING` 타입이 필요한 경우 이 함수에 추가하여 case를 추가해 구현하면 된다.
+
+### 버퍼 생성
+
+- `makeSensorReadBuffer`: GET인 경우 sensorType에 따라 버퍼를 생성한다.
+
+  ```js
+  /**
+   * 0xff 0x55 bufLen sensorIdx actionType device port  data   data  ....
+   *  0    1     2        3          4       5      6    7      9
+   **/
+
+  if (device == this.sensorTypes.ULTRASONIC) {
+    buffer = new Buffer([
+      255,
+      85,
+      6,
+      sensorIdx,
+      this.actionTypes.GET,
+      device,
+      port[0],
+      port[1],
+      10,
+    ]);
+  }
+  ```
+
+- `makeOutputBuffer`: SET인 경우 sensorType에 따라 버퍼를 생성한다.
+  ```js
+    case this.sensorTypes.PWM: {
+          value.writeInt16LE(data);
+          buffer = new Buffer([
+              255,
+              85,
+              6,
+              sensorIdx,
+              this.actionTypes.SET,
+              device,
+              port,
+          ]);
+          buffer = Buffer.concat([buffer, value, dummy]);
+          break;
+      }
+  ```
+
+### lostController
+
+```js
+Module.prototype.lostController = function () {};
+```
+
+`arduinoExt.js`파일에 존재하지 않지만 꼭 필요한 함수이다. `lostController`는 일정시간동안 데이터가 오지 않으면 하드웨어 연결이 해제되는 것을 방지해주는 함수이다. 함수의 내용 없이 선언만 해주면된다. 위의 함수가 없으면 데이터를 받아올 때 데이터가 오고 있음에도 불구하고 연결이 끊기는 현상이 간헐적으로 발생한다.
+
+<br>
+
+## .json 파일 작성
+
+위치는 entry-hw의 `app/modules/`이다. json 파일 명세는 엔트리 측에서 상세하게 작성해주었다. [엔트리 하드웨어 개발 가이드](https://entrylabs.github.io/docs/guide/entry-hw/2016-05-03-add_module.html)에서 확인할 수 있다. 아두이노 확장 보드의 json 파일인 `arduinoExt.json`파일을 살펴보겠다.
+
+```json
+{
+  "id": "010901",
+  "name": {
+    "en": "ArduinoExt Uno",
+    "ko": "아두이노 Uno 확장모드"
+  },
+  "category": "board",
+  "platform": ["win32", "darwin"],
+  "icon": "arduinoExt.png",
+  "module": "arduinoExt.js",
+  "driver": {
+    "win32-ia32": "arduino/dpinst-x86.exe",
+    "win32-x64": "arduino/dpinst-amd64.exe"
+  },
+  "reconnect": true,
+  "firmware": "arduino_ext",
+  "hardware": {
+    "type": "serial",
+    "control": "slave",
+    "duration": 32,
+    "vendor": ["Arduino", "wch.cn", "FTDI"],
+    "baudRate": 115200,
+    "firmwarecheck": false,
+    "byteDelimiter": [13, 10]
+  }
+}
+```
+
+여기서 보드 추가를 위해 확인해야할 부분은 다음과 같다.
+
+- **id**: entryjs에 구현한 block은 이 id를 통해 연결된다.
+- **platform**: 지원하는 플랫폼을 의미한다. 위의 코드에선 `win32`, `darwin`을 지원하므로 윈도우 환경과 MAC 환경 모두에서 해당 보드를 사용할 수 있다.
+- **module**: 같은 경로에 위치한 모듈 파일의 이름
+- **driver**: `app/drivers`에 위치한 드라이버의 이름이다. 위의 코드에선 아두이노 정품 보드이기 때문에 해당 드라이버를 올려놓았지만, 대부분의 커스텀 보드는 아두이노 호환보드를 사용하기 때문에 `CH34x` 드라이버를 사용하면 된다. MAC의 드라이버를 업로드하고 싶다면 `"darwin-x64"`항목을 추가한다.
+- **firmware**: `app/firware`에 위치한 펌웨어의 이름이다. firmware의 타입이 따로 정의되지 않은 경우 `hex`파일 형식의 해당 이름을 찾아 연결된 보드에 업로드한다. 만약 esp 보드를 사용한다면 다음과 같이 작성한다.
+  ```json
+  "firmware": {
+      "type": "esp32",
+      "offset": "0x10000",
+      "name": "board2"
+  },
+  ```
+- hardware: serial통신과 관련된 명세이다. `baudRate`는 시리얼포트 오픈시 사용되는 통신 속도이다.
+
+### Reference
+
+- <https://entrylabs.github.io/docs/guide/basic/setting_environment.html>
