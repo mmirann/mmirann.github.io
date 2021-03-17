@@ -3,7 +3,7 @@ layout: post
 title: "엔트리 하드웨어 개발 일지 #2"
 subtitle: "Entry-hw 파일 작성(.js, .json)"
 categories: [Project/Entry]
-tags: [entry]
+tags: [entry, 엔트리]
 comments: true
 ---
 

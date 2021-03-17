@@ -1,0 +1,74 @@
+---
+layout: post
+title: "엔트리 하드웨어 개발 일지 #3"
+subtitle: "펌웨어 개발"
+categories: [Project/Entry]
+tags: [entry, 엔트리]
+comments: true
+---
+
+![logo](https://user-images.githubusercontent.com/48276682/109602600-c4e12400-7b63-11eb-9bf1-0cb5b8de3ffe.png)
+
+하드웨어에 탑재되는 펌웨어를 작성해야한다. `app/firmwares`에 json에 입력한 펌웨어명과 동일한 이름이어야한다. 확장자는 생략되어있는데, 아두이노인 경우 확장자는 `hex`일 것이고, esp계열의 보드인 경우 `bin`일 것이다. 같이 살펴볼 코드는 `frimwares/examples`에 위치한 `arduino_ext.ino`파일이다. [링크](https://github.com/entrylabs/entry-hw/blob/master/app/firmwares/examples/arduino_ext/arduino_ext.ino) `hex`파일은 Arduino IDE에서 컴파일을 통해 만들 수 있다.
+
+```c
+#define ALIVE 0
+#define DIGITAL 1
+#define ANALOG 2
+#define PWM 3
+#define SERVO_PIN 4
+#define TONE 5
+#define PULSEIN 6
+#define ULTRASONIC 7
+#define TIMER 8
+```
+
+이전 포스팅에서 보았던 `arduinoExt.js`에 있는 `sensorType`과 동일하게
+작성한다. 센서 타입별로 동작하는 방식이 다르기 때문에 해당 상태 상수로 센서의 케이스를 분리한다.
+
+### parseData()
+
+`arduinoExt.js`에서 생성되어 넘어온 버퍼를 파싱한다. 버퍼의 형식은 아래와 같다.
+
+```c
+0xff 0x55 bufLen sensorIdx actionType device port  data   data
+ 0    1     2        3          4       5      6    7      9
+```
+
+`data`의 인덱스는 버퍼를 생성할 때의 크기에 따라 달라진다. 예제로 보고 있는 아두이노 확장보드는 데이터의 버퍼를 `new Buffer(2);`로 크기가 2인 버퍼를 생성하기 때문에 위와 같이 읽는다.
+
+버퍼를 파싱했다면 상태 상수 값(action)에 따라 함수를 호출한다.
+
+- GET: parseData()함수 내에서 보드 제어
+- SET: runModule(device) 호출
+- RESET
+
+### runModule()
+
+센서별로 나누어 동작시키는 함수이다. 여기서 `setPortWritable(pin);`를 꼭 넣어 주어야 한다. 해당 함수는 파라미터에 해당하는 포트를 `pinMode(pin, OUTPUT)`으로 설정한다. pinMode를 설정함과 동시에 `digital`배열에서 해당 포트의 값을 1로 설정하는데 이 과정을 거치지 않으면 `sendPinValues` 함수에서 해당 포트의 핀이 INPUT으로 설정되기 때문에 센서가 제대로 동작하지 않는다. 따라서 `OUTPUT`으로 동작하는 센서는 해당 함수를 꼭 호출해주어야 한다.
+
+### sendPinValue()
+
+get인 경우 센서로부터 받아온 값을 다시 엔트리 인터페이스로 전송하는 함수이다. 차례로 digital, analog 배열에 핀별로 담긴 값을 먼저 전송한다.
+
+```c
+  if(isUltrasonic) {
+    sendUltrasonic();
+    callOK();
+  }
+```
+
+그 후 위와 같은 코드가 이어지는데, 이는 `get`과 `set`을 동시에 하는 센서인 경우에 센서에서 데이터를 읽어와 위와 같이 따로 전송하기 위함이다. `isUltrasonic`의 값은 `parseData`에서 `setUltrasonicMode`를 통해 설정되는데, 나는 펌웨어를 작성할 때 `parseData`에서 바로 `isSensor`의 값을 설정하였다.
+
+### read/send Short/Float/Long
+
+데이터를 전송할 때 데이터를 자료형에 맞게 시리얼에 작성해주는 함수이다. 받아온/보내고자 하는 데이터의 자료형에 맞게 함수를 호출하면 된다.
+
+- `writeFloatLE()` -> `readFloat()`
+- `writeInt16LE()` -> `readBuffer()`
+
+반대의 경우는 `arduinoExt.js`의`handleLocalData()`에서 자료형에 맞게 파싱한다.
+
+### Reference
+
+- <https://github.com/entrylabs/entry-hw>
