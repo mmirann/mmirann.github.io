@@ -1,0 +1,33 @@
+---
+layout: post
+title: "[Nodejs] Module not found: Error: Can't resolve 'dgram' in * "
+subtitle: ""
+categories: [Study/DataCommu]
+tags: [Nodejs]
+comments: true
+---
+
+## webPack 에러
+
+---
+
+![image](https://user-images.githubusercontent.com/48276682/111862076-2c85d480-8996-11eb-8434-91b5b0744c8a.png)
+
+webPack을 빌드하는 도중에 위와 같은 오류가 떴다. `dgram`을 resolve할 수 없다는 에러이다. 클라이언트에서 사용할 수 없는 패키지를 써서 뜨는 오류이다.
+
+1. `dgram`과 `fs`와 같은 모듈은 Node.js의 코어모듈이기 때문에 install에 포함되어있다면 우선 삭제한다.
+2. <point>클라이언트에서는 실행하지 않도록 예외처리를 하고</point>
+3. `webpack.config.js`에 아래와 같이 코드를 추가한다.
+
+```js
+module.exports = [
+  (node: {
+    fs: "empty",
+    dgram: "empty",
+  }),
+];
+```
+
+### Reference
+
+- <https://github.com/webpack-contrib/css-loader/issues/447>
