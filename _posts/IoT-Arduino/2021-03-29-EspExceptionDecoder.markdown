@@ -7,6 +7,8 @@ tags: [esp32]
 comments: true
 ---
 
+## Stack Overflow 에러
+
 블루투스 통신을 위한 ESP32 보드를 개발하고 있는데, 스택 오버플로우 에러가 났다. 시리얼 창에 출력되는 에러는 철저하게 컴퓨터 기준이어서 어디서 난 건지 감도 안잡혔다. 코드를 살펴봐도 안보인다. 스택 오버플로우 에러가 발생하면 ESP32는 계속해서 리부팅된다. 시리얼 프린트 디버깅으로도 해결불가. 그래서 구글링하다가 `EspExceptionDecoder`을 발견하였다.
 
 <br>
@@ -31,16 +33,16 @@ guru meditation error core 1 panic'ed (loadprohibited). exception was unhandled.
 
 1. Arduino IDE에 ESP32 보드가 설치되어 있어야 한다.
 2. [다운로드 페이지](https://github.com/me-no-dev/EspExceptionDecoder/releases/tag/1.1.0)에 접속해서 `EspExceptionDecoder-1.1.0.zip`을 다운 받는다.
-3. 압축을 풀고 `<home_dir>/Arduino/tools/EspExceptionDecoder/tool/EspExceptionDecoder.jar` 에 `jar`파일을 집어 넣는다.
+3. 압축을 풀고
+   `<home_dir>/Arduino/tools/EspExceptionDecoder/tool/EspExceptionDecoder.jar` 에 `jar`파일을 집어 넣는다.
 
    - 나는 `Window10`환경 기준으로 다음 경로에 넣어주었다.
    - `C:\Users\<UserName>\Documents\Arduino\tools\EspExceptionDecoder\tool`
    - `Arduino`폴더 안에 `tools`가 없어도 그냥 생성하면 된다.
-     ![image](https://user-images.githubusercontent.com/48276682/112836722-e9cea580-90d5-11eb-89f1-5d3c50fa2b3a.png)
 
 4. 아두이노 IDE 껐다 키기
 
-![image](https://user-images.githubusercontent.com/48276682/112836333-6a40d680-90d5-11eb-9383-af083bbf2a4c.png)
+![image](https://user-images.githubusercontent.com/48276682/112838043-98bfb100-90d7-11eb-9ba2-89df3b9350b2.png)
 
 짠! Esp Exception Decoder가 툴 메뉴에 추가된 걸 확인할 수 있다.
 
