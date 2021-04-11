@@ -9,11 +9,7 @@ comments: true
 
 ## Stack Overflow 에러
 
-블루투스 통신을 위한 ESP32 보드를 개발하고 있는데, 스택 오버플로우 에러가 났다. 시리얼 창에 출력되는 에러는 철저하게 컴퓨터 기준이어서 어디서 난 건지 감도 안잡혔다. 코드를 살펴봐도 안보인다. 스택 오버플로우 에러가 발생하면 ESP32는 계속해서 리부팅된다. 시리얼 프린트 디버깅으로도 해결불가. 그래서 구글링하다가 `EspExceptionDecoder`을 발견하였다.
-
-<br>
-
-## Stack overflow 에러
+블루투스 통신을 위한 ESP32 보드를 개발하고 있는데, 스택 오버플로우 에러가 났다. 시리얼 창에 출력되는 에러는 철저하게 컴퓨터 기준이어서 어디서 난 건지 감도 안잡혔다. 코드를 살펴봐도 안보인다. 스택 오버플로우 에러가 발생하면 ESP32는 계속해서 리부팅된다. 시리얼 프린트 디버깅으로도 해결불가. 그래서 구글링하다가 `Esp Exception Decoder`을 발견하였다.
 
 ```
 guru meditation error core 1 panic'ed (loadprohibited). exception was unhandled.
@@ -21,7 +17,7 @@ guru meditation error core 1 panic'ed (loadprohibited). exception was unhandled.
 
 ![image](https://user-images.githubusercontent.com/48276682/112835275-04078400-90d4-11eb-9cbe-4facd881c11c.png)
 
-컴퓨터가 아닌 이상 해독할 수 없는 오류.. 이 오류를 해석해주는 게 `EspExceptionDecoder`의 역할이다.
+컴퓨터가 아닌 이상 해독할 수 없는 오류.. 이 오류를 해석해주는 게 `Esp Exception Decoder`의 역할이다.
 
 <br>
 
