@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Algorithm
+title: Algorithm/Solving
 permalink: "Algorithm/Solving"
 ---
 

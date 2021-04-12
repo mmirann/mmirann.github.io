@@ -2,7 +2,7 @@
 layout: post
 title: "[Nodejs] Module not found: Error: Can't resolve 'dgram' in * "
 subtitle: ""
-categories: [Study/DataCommu]
+categories: [Study/Nodejs]
 tags: [Nodejs]
 comments: true
 ---
