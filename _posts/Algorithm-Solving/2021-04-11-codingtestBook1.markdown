@@ -7,7 +7,7 @@ tags: [Implementation]
 comments: true
 ---
 
-### 카카오 2020 신입 공채
+## 카카오 2020 신입 공채 코딩테스트
 
 ## 문제 설명
 
