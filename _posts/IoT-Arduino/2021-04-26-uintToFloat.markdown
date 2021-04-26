@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "[Arduino] uint8_t를 float으로, float을 uint8_t로 변환"
+title: "[Arduino] Uint8Array를 float으로, float을 uint8_t로 변환"
 subtitle: ""
 categories: [IoT/Arduino]
 tags: [arduino]
 comments: true
 ---
+
+## Arduino, node.js
 
 DHT센서의 결과 값의 자료형은 `float`인데, 블루투스 송수신을 위한 `BLECharacteristic` 라이브러리의 `setValue`는 `uint_8_t`만 지원한다. 따라서 보드에서 블루투스를 통해 스크래치 인터페이스(`node.js`기반)로 받아오기 위해선 전송시에 `uint8_t`로 변환해야한다. 또한 스크래치에서 지원하는 블루투스 모듈 `BLE`를 통해 `Uint8Array`로 읽어온 것을 다시 `float`으로 변환하는 코드를 다뤄보도록 하겠다.
 
