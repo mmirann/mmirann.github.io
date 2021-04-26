@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[알고리즘] 자물쇠와 열쇠"
+title: "[알고리즘] 자물쇠와 열쇠"
 subtitle: ""
 categories: [Algorithm/Solving]
 tags: [Implementation]
