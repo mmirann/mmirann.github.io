@@ -1,0 +1,10 @@
+---
+layout: post
+title: "[운영체제] Operating System: Concepts Ch.1"
+subtitle: ""
+categories: [Study/OS]
+tags:
+comments: true
+---
+
+## 1. 서론
