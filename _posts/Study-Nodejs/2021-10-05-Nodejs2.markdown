@@ -27,12 +27,16 @@ const boo = function () {
 
 함수 선언과 함수 표현식의 차이는 함수 선언으로 선언된 foo 함수는 스코프의 최상단으로 호스팅되어 코드의 처음에 `foo()`로 호출이 가능하다. 하지만 함수 표현식으로 선언된 boo 함수는 함수 표현식을 선언하기 전에는 함수를 호출할 수 없기 때문에 코드의 처음에 `boo()`로 boo 함수 호출이 불가능하다.
 
+<br>
+
 ## 화살표 함수
 
 - function 키워드를 생략할 수 있음
 - 함수의 매개변수가 1개라면 괄호를 생략할 수 있음
 - 매개 변수가 없는 함수는 괄호가 필요함
 - 함수 바디가 표현식 하나라면 중괄호와 return 문을 생략할 수 있음
+
+<br>
 
 ## 제한 사항
 
@@ -41,6 +45,8 @@ const boo = function () {
 - 일반적으로 스코프를 지정할 때 사용하는 `call`, `apply`, `bind` 메소드를 이용할 수 없음
 - 생성자로 사용할 수 없음
 - `yield`를 화살표 함수 내부에서 사용할 수 없음
+
+<br>
 
 ## 화살표 함수 선언
 
@@ -67,6 +73,8 @@ const boo = function () {
   }
 ```
 
+<br>
+
 ## 화살표 함수 사용
 
 ```js
@@ -92,8 +100,9 @@ var bob = {
 }; //Bob knows John, Brian
 ```
 
-### Reference
+<br>
 
-- <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions>
+## Reference
+
+- [mozilla](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - <https://jsdev.kr/t/es6/2944>
--
