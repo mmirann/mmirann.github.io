@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Nodejs] Implementing Checksum in Java"
+title: "[JS] Implementing Checksum in Java"
 subtitle: ""
 categories: [Study/Nodejs]
 tags: [Nodejs]
@@ -9,41 +9,41 @@ comments: true
 
 ## Checksum
 
-체크썸은 덧셈을 통해서 오류를 검출하는 방법으로, 1의 보수를 이용한다. 덧셈만 이용하므로 굉장히 빠르다는 장점이 있다. Sender는 보내고자하는 데이터를 전부 더하고 1의 보수화를 하여 Checksum을 만든다. 보내고자 하는 데이터 마지막에 Checksum을 같이 실어서 보낸다. Reciever 측에서는 받은 데이터와 Checksum의 값을 더하여 0이 되는지 확인한다. 더했을 때 0이 나오지 않으면 전송 중에 오류가 발생한 것이다. 또는 Reciever 측에서 Checksum의 값과 Checksum을 제외한 받은 데이터들을 다 더한 값의 1의 보수화한 값이 같은지 확인하는 방법도 있다. 
+체크썸은 덧셈을 통해서 오류를 검출하는 방법으로, 1의 보수를 이용한다. 덧셈만 이용하므로 굉장히 빠르다는 장점이 있다. Sender는 보내고자하는 데이터를 전부 더하고 1의 보수화를 하여 Checksum을 만든다. 보내고자 하는 데이터 마지막에 Checksum을 같이 실어서 보낸다. Reciever 측에서는 받은 데이터와 Checksum의 값을 더하여 0이 되는지 확인한다. 더했을 때 0이 나오지 않으면 전송 중에 오류가 발생한 것이다. 또는 Reciever 측에서 Checksum의 값과 Checksum을 제외한 받은 데이터들을 다 더한 값의 1의 보수화한 값이 같은지 확인하는 방법도 있다.
 
-버퍼의 크기는 7로 고정되어 있다. 크기가 고정되어 있기 때문에 End Flag는 두지 않았다. 전송되는 데이터의 Header는 2개로 모두 `0xFF`의 값을 가지며 Checksum 계산에는 포함하지 않는다. 다음은 간단한 Checksum 구현 코드이다. 
+버퍼의 크기는 7로 고정되어 있다. 크기가 고정되어 있기 때문에 End Flag는 두지 않았다. 전송되는 데이터의 Header는 2개로 모두 `0xFF`의 값을 가지며 Checksum 계산에는 포함하지 않는다. 다음은 간단한 Checksum 구현 코드이다.
 
 ## Sender
+
 ```js
-const   DATA_LEN = 7;
-        HEADER_LEN = 2;
-var data = [START_SYS,START_SYS, CMD1, CMD2, VAL1, VAL2, VAL3];
+const DATA_LEN = 7;
+HEADER_LEN = 2;
+var data = [START_SYS, START_SYS, CMD1, CMD2, VAL1, VAL2, VAL3];
 
-var checksum, sum=0;
+var checksum,
+  sum = 0;
 
-for(var i=HEADER_LEN;i<DATA_LEN-HEADER_LEN;i++)
-    sum+=data[i];
+for (var i = HEADER_LEN; i < DATA_LEN - HEADER_LEN; i++) sum += data[i];
 
-checksum=~sum;
+checksum = ~sum;
 data.push(checksum);
 ```
 
 ## Receiver
+
 ```js
-const   DATA_LEN = 7;
-        HEADER_LEN = 2;
+const DATA_LEN = 7;
+HEADER_LEN = 2;
 
-var sum=0, i=0, result;
+var sum = 0,
+  i = 0,
+  result;
 
-for(i=HEADER_LEN;i<DATA_LEN-HEADER_LEN;i++)
-    sum+=recievedData[i];
+for (i = HEADER_LEN; i < DATA_LEN - HEADER_LEN; i++) sum += recievedData[i];
 
-sum+=recievedData[i]; //수신된 checksum을 더함
-result=~sum;
+sum += recievedData[i]; //수신된 checksum을 더함
+result = ~sum;
 
-if (result==0)
-    console.log("NO ERROR IN TRANSMISSION");
-else
-    console.log("ERROR DETECTED");
-
+if (result == 0) console.log("NO ERROR IN TRANSMISSION");
+else console.log("ERROR DETECTED");
 ```
