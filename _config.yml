@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
 baseurl: "/"
-url: "https://mmirann.github.io/"
+url: "https://mmirann.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
