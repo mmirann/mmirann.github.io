@@ -1,0 +1,62 @@
+---
+layout: post
+title: "[Nodejs] Buffer 클래스 사용법"
+subtitle: ""
+categories: [Study/Nodejs]
+tags: [Nodejs]
+comments: true
+---
+
+![image](https://user-images.githubusercontent.com/48276682/137583223-9248574b-ac45-4576-bdf5-99d3b2c763ff.png)
+
+노드JS의 버퍼 클래스는 **Uint8Array API**를 구현하는데 사용된다. 자바스크립트의 Uint8Array 클래스의 하위 클래스이다. 버퍼 클래스의 인스턴스는 정수 배열과 비슷하지만 버퍼 크기는 버퍼가 생성될 때 설정되며 변경할 수 없는 **고정 길이의 바이트 시퀀스**이다. 또한 global scope에 선언되어 있으므로 `require` 없이 사용할 수 있다.
+
+<br>
+
+## 버퍼 생성
+
+```js
+// 크기 지정, 0으로 채워짐
+const buf1 = Buffer.alloc(10); // new
+const buf2 = new Buffer(10); // old -> deprecated
+
+// 크기 지정, 1로 채워짐
+const buf3 = Buffer.alloc(10, 1);
+
+// [0x74, 0x65, 0x73, 0x74] (1byte씩) 버퍼 생성
+const buf4 = new Buffer("test"); // new
+const buf5 = Buffer.from("test"); // old -> deprecated
+```
+
+`new Buffer`을 사용하면 deprecation warning 메시지가 출력되기 때문에 `alloc`과 `from`을 사용하여 버퍼를 생성한다.
+
+<br>
+
+## 버퍼 조작
+
+```js
+//버퍼 작성
+buf1.write("Hello Buffer");
+console.write(buf1); // 'Hello Buff', 10 byte만 할당됨
+
+// 버퍼 크기
+console.log(buf1.length); // 10
+
+// 버퍼 디코딩
+console.log(buf4.toString()); // 'test'
+
+// 버퍼 합치기
+// Buffer.concat(list[, totalLength]);
+// totalLength가 주어지지 않으면 계산하기 위해 추가 루프가 실행되기 때문에
+// 길이가 이미 알려진 경우 totalLength를 제공하는게 빠름
+buf4 = Buffer.concat([buf1, buf4]);
+console.log(buf4.toString()); // 'Hello Bufftest'
+```
+
+<br>
+
+## Reference
+
+- [Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/buffer.html#buffer_buffer)
+- <https://tk-one.github.io/2018/08/28/nodejs-buffer/>
+- [Stack overflow](https://stackoverflow.com/questions/52165333/deprecationwarning-buffer-is-deprecated-due-to-security-and-usability-issues)
