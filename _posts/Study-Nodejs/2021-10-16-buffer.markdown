@@ -7,7 +7,7 @@ tags: [Nodejs]
 comments: true
 ---
 
-![image](https://user-images.githubusercontent.com/48276682/137583223-9248574b-ac45-4576-bdf5-99d3b2c763ff.png)
+![image](https://user-images.githubusercontent.com/48276682/137583319-34b0b71c-d167-40be-8da3-c8435ba2f91b.png)
 
 노드JS의 버퍼 클래스는 **Uint8Array API**를 구현하는데 사용된다. 자바스크립트의 Uint8Array 클래스의 하위 클래스이다. 버퍼 클래스의 인스턴스는 정수 배열과 비슷하지만 버퍼 크기는 버퍼가 생성될 때 설정되며 변경할 수 없는 **고정 길이의 바이트 시퀀스**이다. 또한 global scope에 선언되어 있으므로 `require` 없이 사용할 수 있다.
 
