@@ -34,21 +34,59 @@ const buf5 = Buffer.from("test"); // old -> deprecated
 
 ## 버퍼 조작
 
+---
+
+### 버퍼 작성
+
 ```js
-//버퍼 작성
 buf1.write("Hello Buffer");
 console.write(buf1); // 'Hello Buff', 10 byte만 할당됨
+```
 
-// 버퍼 크기
+외에도 `writeInt16LE` 를 통해 버퍼에 값을 쓸 수 있다. 16비트의 Little Indian 형식의 int의 값을 버퍼에 쓴다. int 자리에는 `Float`, `Double`, `UInt` 자료형이 올 수 있으며 int, uint인 경우 16비트와 32비트 모두 사용이 가능하다. `BE`로 사용하는 경우 Big Indian 형식을 쓸 수 있다.
+
+```js
+import { Buffer } from "buffer";
+
+const buf = Buffer.allocUnsafe(2);
+
+buf.writeInt16LE(0x0304, 0); //value[, offset = 0]
+
+console.log(buf);
+// Prints: <Buffer 04 03>
+```
+
+버퍼에 작성된 값을 읽기 위해 `readInt16LE`을 사용할 수 있다.
+
+```js
+import { Buffer } from "buffer";
+
+const buf = Buffer.from([0, 5]);
+
+console.log(buf.readInt16LE(0));
+// Prints: 1280
+console.log(buf.readInt16LE(1));
+// Throws ERR_OUT_OF_RANGE.
+```
+
+### 버퍼 크기
+
+```js
 console.log(buf1.length); // 10
+```
 
-// 버퍼 디코딩
+### 버퍼 디코딩
+
+```js
 console.log(buf4.toString()); // 'test'
+```
 
-// 버퍼 합치기
+### 버퍼 합치기
+
+totalLength가 주어지지 않으면 계산하기 위해 추가 루프가 실행되기 때문에 길이를 아는 경우 totalLength를 제공하는게 빠르다.
+
+```js
 // Buffer.concat(list[, totalLength]);
-// totalLength가 주어지지 않으면 계산하기 위해 추가 루프가 실행되기 때문에
-// 길이가 이미 알려진 경우 totalLength를 제공하는게 빠름
 buf4 = Buffer.concat([buf1, buf4]);
 console.log(buf4.toString()); // 'Hello Bufftest'
 ```
