@@ -22,9 +22,9 @@ Not enough memory; see https://support.arduino.cc/hc/en-us/articles/360013825179
 ## 아두이노 메모리
 
 아두이노가 사용하는 메모리의 종류는 3가지로, 다음과 같다.
-* Flash Memory(Program space): 32Kbyte, 아두이노 스케치와 부트로더가 저장되는 메모리로, 비휘발성 메모리이다.
-* SRAM: 아두이노 스케치 실행 시 2Kbyte, 필요한 각종 변수와 버퍼 등이 저장되는 메모리로, 휘발성 메모리이다.
-* EEPROM: 1Kbyte,길이가 긴 시간 자료 등을 저장할 때 사용하는 메모리로, 비휘발성 메모리이다.
+* **Flash Memory**(Program space): 32Kbyte, 아두이노 스케치와 부트로더가 저장되는 메모리로, 비휘발성 메모리이다.
+* **SRAM**: 아두이노 스케치 실행 시 2Kbyte, 필요한 각종 변수와 버퍼 등이 저장되는 메모리로, 휘발성 메모리이다.
+* **EEPROM**: 1Kbyte,길이가 긴 시간 자료 등을 저장할 때 사용하는 메모리로, 비휘발성 메모리이다.
 
 아두이노를 컴파일하면 아래와 같은 멘트를 볼 수 있다.
 ```
@@ -37,7 +37,7 @@ Not enough memory; see https://support.arduino.cc/hc/en-us/articles/360013825179
 
 ## PROGMEM 키워드
 
-```
+```c
 const dataType variableName[] PROGMEM = {};
 const PROGMEM dataType variableName[] = {};
 ```
@@ -167,5 +167,5 @@ void playMelody(int melody[], int melodySize, int tempo, int sec)
 
 ## Reference
 
-- <https://juahnpop.tistory.com/120>
+- <https://www.arduino.cc/reference/en/language/variables/utilities/progmem/>
 - <https://kocoafab.cc/fboard/104>
