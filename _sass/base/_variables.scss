@@ -23,7 +23,7 @@ $border-color: rgba(
 
 // Typography colours
 $text-color: #383838 !default;
-$link-color: #147ba7 !default;
+$link-color: #383838 !default;
 $selection-color: #d4d4d4 !default; // visible when highlighting text
 
 // Tags color
@@ -32,7 +32,7 @@ $tags-color: #b0b0b0 !default;
 //Search color
 $search-color: #999 !default;
 
-// Header colours
+// Header coloursD
 $header-link-color: #383838 !default;
 
 // Feature image for articles
@@ -40,6 +40,6 @@ $feature-image-text-color: #fff !default;
 $feature-image-size: cover !default; // options include "cover", "contain", "auto"
 
 // Header description box
-$header-desc-background-color: #776598 !default;
+$header-desc-background-color: #989898 !default;
 $header-desc-text-color: #fff !default;
 $header-desc-link-color: #02453d !default;
