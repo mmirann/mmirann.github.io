@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[운영체제] Operating System: Concepts Ch.1"
+title: "[운영체제] 🦕 Operating System: Concepts Ch.1-1"
 subtitle: ""
 categories: [Study/OS]
 tags:
@@ -84,8 +84,6 @@ comments: true
 <br>
 
 ## 1.2 컴퓨터 시스템의 구성(Computer System Organization)
-
-<br>
 
 ### 1.2.1 컴퓨터 시스템 연산(Computer-System Operation)
 
@@ -172,7 +170,7 @@ CPU는 명령어를 단지 메모리로부터 가져올 수 있으므로 프로�
 
 위의 인터롭트 구동 방식의 입출력은 적은 양의 데이터를 전송하는 데에는 문제가 없으나 디스크 입출력과 같은 대량의 데이터를 전송하는 데에는 높은 오버해드를 초래한다.
 
-![](https://postfiles.pstatic.net/MjAxOTA3MjdfMTY5/MDAxNTY0MjE1OTM3OTIx.O2fZxA6AHxdJftxAIXCrT3ImZmKwqOYsb3-oa4yAksEg.r5LUEjCYdNROnuKBfz-0NU7LHqZ4_EVn-jUJkYRbkmMg.PNG.bisu1532/dfdfdf.PNG?type=w773)
+![image](https://user-images.githubusercontent.com/48276682/144812021-4cb56dab-8da1-484c-947c-51900ce6b661.png){: width="50%" height="50%"}
 
 - **CPU의 개입없이** 메모리로부터 장치 제어기 자신의 버퍼 장치로 또는 버퍼로부터 메모리로 데이터 블록 전체를 전송함
 - 한 바이트마다 인터럽트가 발생하는 것이 아닌 블록 전송이 완료될 때마다 인터롭트가 한번만 발생
@@ -211,7 +209,7 @@ CPU는 명령어를 단지 메모리로부터 가져올 수 있으므로 프로�
 
 단일 코어를 가진 여러 개의 칩보다 효율적이며, 이는 칩 내의 통신이 칩 사이의 통신보다 빠르기 때문이다. 또한 여러 개의 단일 칩보다 전력을 훨씬 덜 소모한다. 멀티 코어 시스템은 멀티 프로세서 시스템인 반면 모든 멀티 프로세서 시스템이 멀티 코어인 것은 아니다.
 
-![image](https://user-images.githubusercontent.com/48276682/132084846-b41f5012-82b8-490b-a513-2d5ff09e29d9.png)
+![image](https://user-images.githubusercontent.com/48276682/132084846-b41f5012-82b8-490b-a513-2d5ff09e29d9.png){: width="50%" height="50%"}
 
 각 코어는 자신의 레지스터 집합과 자신의 로컬 캐시를 갖으며 하나의 캐시를 공유하기도 한다.
 
@@ -223,9 +221,10 @@ CPU는 명령어를 단지 메모리로부터 가져올 수 있으므로 프로�
 
 둘 이상의 노드(싱글 프로세서 or 멀티 프로세서)가 하나의 일을 처리한다. 이러한 시스템은 약결합(loosely coupled)라고 간주된다. 클러스터링은 통상 높은 가용성(availability)를 제공하기 위해 사용된다. 즉 클러스트 내 하나 이상의 컴퓨터 시스템이 고장나도 서비스는 계속 제공된다.
 
-![image](https://user-images.githubusercontent.com/48276682/132085214-ba691957-4d05-4c22-8618-951e194b6973.png)
+![image](https://user-images.githubusercontent.com/48276682/132085214-ba691957-4d05-4c22-8618-951e194b6973.png){: width="50%" height="50%"}
 
 - **대칭형**: 둘 이상의 호스트들이 응용 프로그램을 실행하고 서로를 감시함. 가용한 하드웨어를 모두 사용하기 때문에 대칭형 구성이 더욱 효율적임.
 - **비대칭형**: 다른 컴퓨터들이 응용 프로그램을 실행하는 동안 한 컴퓨터는 긴급대기(hot-standby)모드 상태를 유지함. 서버가 고장나면 긴급 대기 모드의 호스트가 활성 서버가 됨.
 
 클러스터 시스템은 클러스터 내의 모든 컴퓨터에서 응용을 병렬 수행할 수 있어 단일 프로세서나 SMP 시스템보다 훨씬 큰 계산 능력을 제공할 할 수 있다.
+
