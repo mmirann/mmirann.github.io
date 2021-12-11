@@ -6,29 +6,30 @@ categories: [Algorithm/Concept]
 tags: [DP]
 comments: true
 ---
->다이나믹 프로그래밍 정리
 
----
-
-> **Dynamic Programming**
+## 다이나믹 프로그래밍
 
 : 반복되는 문제가 있을 때, 그 문제는 단 한번만 연산하도록 하는 알고리즘. 즉 한번 푼 것을 다시 푸는 알고리즘 개선
 
->**사용가능한 경우**
+<br>
+
+## 🤔 사용법
 
 1. 큰 문제를 작은 문제로 나눌 수 있다.
 2. 작은 문제해서 구한 정답을 그것을 포함하는 큰 문제에서도 적용할 수 있다.
 
-<point>DP는 대부분 최적값을 구할 때 사용된다.</point>
+> **DP는 대부분 최적값을 구할 때 사용된다.**
 
->**메모이제이션**
+### 메모이제이션
 
 이미 계산한 결과를 저장해 나중에 단순 반환을 통해 사용하는 것. 공간을 사용해 시간을 줄인다.
 
->**Top-down**
+<br>
 
-큰 문제부터 시작해서 작은 문제로 분할해 가면서 푸는 것. 
-대부분 <point>재귀함수</point>로 구현된다. 
+### Top-down
+
+큰 문제부터 시작해서 작은 문제로 분할해 가면서 푸는 것.
+대부분 **재귀함수**로 구현된다.  
 ex) fibonacci(4)를 구하는 건 fibonacci(3)과 fibonacci(2)를 구하는 것으로 나눌 수 있고 ...
 
 ```cpp
@@ -43,11 +44,14 @@ int fibonacci(int n){
 }
 ```
 
->**Bottom-up**
+<br>
+
+### Bottom-up
 
 작은 문제부터 시작해서 작은 문제를 쌓아 큰 문제를 푸는 것. <point>가장 작은 문제부터 풀고, 점점 크기를 키워 전체를 푼다.</point>
 Top-down과 달리 <point>for문</point>을 이용해서 다음 값을 계산해 나간다.
-ex) fibonacci(1)을 구하고 fibonacci(2)를 구하면 fibonacci(3)을 구할 수 있음  
+ex) fibonacci(1)을 구하고 fibonacci(2)를 구하면 fibonacci(3)을 구할 수 있음
+
 ```cpp
 int f(int n){//f(n)구하기
 
@@ -59,6 +63,6 @@ int f(int n){//f(n)구하기
 }
 ```
 
-* 문제에 Top-down / Bottom-up 적용해서 푼 [문제](https://mmirann.github.io/algorithm/solving/2020/05/19/baek-1932.html)
+<br>
 
-
+- Top-down / Bottom-up 적용해서 푼 [문제](https://mmirann.github.io/algorithm/solving/2020/05/19/baek-1932.html)
