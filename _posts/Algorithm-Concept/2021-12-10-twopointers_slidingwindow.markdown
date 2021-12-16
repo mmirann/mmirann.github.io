@@ -39,7 +39,26 @@ def lengthOfLongestSubstring(self, s):
 ```
 
 <br>
- 
+
+그리고 LeetCode의 [11번문제](https://leetcode.com/problems/container-with-most-water/)도 투포인터 문제다. 그래프의 맨왼쪽과 맨오른쪽을 left, right 포인터로 둔다. left와 right 중에 짧은 포인터를 한칸씩 옮기면서 직사각형 면적의 최댓값을 구한다. left, right 포인터가 만났을 때 종료한다. Brute-force를 쓰면 시간초과가 뜨기 때문에 투포인터를 사용해서 O(N)으로 해결해야 한다.
+
+```python
+
+    def maxArea(self, height):
+        l, r, maxArea = 0, len(height)-1, 0
+        while l < r:
+            if height[l] < height[r]:
+                maxArea = max(maxArea, height[l]*(r-l))
+                l += 1
+            else:
+                maxArea = max(maxArea, height[r]*(r-l))
+                r -= 1
+        return maxArea
+
+```
+
+<br>
+
 ## 슬라이딩 윈도우(Sliding Window)
 
 - 투 포인터와 비슷한 유형이다.
