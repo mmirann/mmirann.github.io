@@ -106,16 +106,22 @@ dl,
   display: inline-block;
   width: 100%;
 }
+
+li > p {
+  display: contents;
+  margin-bottom: 1em;
+}
 // Lists within lists
 li > ul,
 li > ol {
-  margin-bottom: 0;
+  margin-bottom: 1em;
   margin-left: 1em;
 }
 ol,
 ul {
   list-style-position: inside;
 }
+
 hr {
   border: 0;
   border-top: 1px solid $border-color;
