@@ -1,0 +1,69 @@
+---
+layout: post
+title: "[Arduino, Node.js] int를 uint8Array로, uint8Array를 int로 변환"
+subtitle: ""
+categories: [IoT/Arduino]
+tags: [arduino]
+comments: true
+---
+
+## Arduino, node.js
+
+[저번 포스팅](https://mmirann.github.io/iot/arduino/2021/04/26/uintToFloat.html)과 반대로 이번엔 Node.js에서 int를 바이트 단위로 나눠서 전송한다. 그리고 아두이노에서 바이트 단위로 나눠진 배열을 받아서 다시 int로 파싱하는 코드를 다뤄보도록 하겠다.
+
+<br>
+
+## Node.js에서 int -> uint8Array
+아날로그 센서 입력으로 받은 센서의 값(0~4096)을 보낼 것이기 때문에 16비트면 충분하다. 우선 16비트의 signed 정수를 표현할 수 있는 `Int16Array` 객체를 사용해서 변환하고자 하는 값을 넣는다. 그리고 8비트의 unsigned 정수를 표현할 수 있는 `Uint8Array` 객체에 버퍼 값으로 넣으면 바이트 단위로 나눠져 배열에 담긴다. 만약 `Array`객체로 사용하고 싶다면 `Array.from(uint8Array)`를 사용한다.
+
+```js
+  let int16 = new Int16Array(2); // 크기가 2인 16비트의 Array 생성
+   int16[0] = 30;
+   int16[1] = 3000;
+   
+   console.log(int16); 
+
+   let uint8 = new Uint8Array(int16.buffer);
+  
+   console.log(uint8);
+```
+
+### OUTPUT
+```
+Int16Array(2) [30, 3000]
+Uint8Array(4) [30, 0, 184, 11]
+```
+
+<br>
+
+## Arduino에서 uint8Array -> int
+
+저번 포스팅에서 float을 uint8_t로 변환할 때 사용했던 것처럼 `union`을 이용한다. 
+
+```c
+union
+{
+    byte byteVal[2];
+    short shortVal;
+} valShort;
+
+short readShort(int idx)
+{
+    valShort.byteVal[0] = dataBuf[idx];
+    valShort.byteVal[1] = dataBuf[idx + 1];
+    return valShort.shortVal;
+}
+
+// idx += 2
+int data0 = readShort(0); // 30
+int data1 = readShort(2); // 3000
+
+```
+
+<br>
+
+## Reference
+
+* <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array>  
+* <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array>
+* <https://github.com/entrylabs/entry-hw>
