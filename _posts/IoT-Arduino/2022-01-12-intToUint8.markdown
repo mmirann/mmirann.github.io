@@ -3,7 +3,7 @@ layout: post
 title: "[Arduino, Node.js] int를 uint8Array로, uint8Array를 int로 변환"
 subtitle: ""
 categories: [IoT/Arduino]
-tags: [arduino]
+tags: [arduino,Nodejs]
 comments: true
 ---
 
