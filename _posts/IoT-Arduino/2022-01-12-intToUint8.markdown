@@ -8,8 +8,7 @@ comments: true
 ---
 
 ## Arduino, node.js
-
-[저번 포스팅](https://mmirann.github.io/iot/arduino/2021/04/26/uintToFloat.html)과 반대로 이번엔 Node.js에서 int를 바이트 단위로 나눠서 전송한다. 그리고 아두이노에서 바이트 단위로 나눠진 배열을 받아서 다시 int로 파싱하는 코드를 다뤄보도록 하겠다.
+[저번 포스팅](https://mmirann.github.io/iot/arduino/2021/04/26/uintToFloat.html)과 반대로 이번엔 Node.js에서 int를 바이트 단위로 나눠서 전송한다. 그리고 아두이노에서 바이트 단위로 나눠진 배열을 받아서 다시 int로 파싱하는 코드를 다룬다.
 
 <br>
 

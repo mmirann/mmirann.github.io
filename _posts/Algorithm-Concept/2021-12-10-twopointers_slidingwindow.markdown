@@ -8,11 +8,10 @@ comments: true
 ---
 
 ## 투 포인터(Two Pointers)
-
-![image](https://user-images.githubusercontent.com/48276682/145563598-be595142-4b6d-4e9b-8702-982df10471bb.png){: width="70%" height="70%"}
-
 - 어떤 특정 조건을 만족하는 연속 구간을 구할 때 `O(N)`으로 풀 수 있다.
 - 2개의 포인터를 조작해가며 원하는 답을 얻는다.
+
+![image](https://user-images.githubusercontent.com/48276682/145563598-be595142-4b6d-4e9b-8702-982df10471bb.png){: width="70%" height="70%"}
 
 <br>
 
