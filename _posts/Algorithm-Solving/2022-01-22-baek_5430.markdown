@@ -1,0 +1,108 @@
+---
+layout: post
+title: "[알고리즘] 백준 5430번 AC 파이썬"
+subtitle: ""
+categories: [Algorithm/Solving]
+tags: [Implementation]
+comments: true
+---
+![image](https://user-images.githubusercontent.com/48276682/150640243-e31e4052-5a8a-4cae-8be7-f607adfcedf3.png){: width="40%" height="40%"}
+
+<br>
+
+골드5의 구현 문제.. 입출력이 상당히.. 까다롭다. 
+
+### 입력
+`[1,2,3,4]` 형태로 입력되기 때문에 `[1:-2]`로 나눈 다음에 콤마 단위로 스플릿하고 `map`으로 `int`의 리스트로 만들었다.
+### 출력
+파이썬에서 `print`함수로 출력을 하면 `[1, 2, 3]`과 같이 공백이 함께 출력되는데, `[1,2,3]`과 같이 출력이 되야한다. 그래서 `join`으로 스트링으로 만들어서 출력했다.  
+
+<br>
+
+## 풀이
+`R`이 입력되었을 때 리스트를 `reverse()` 또는`[::-1]`로 뒤집으면 시간 초과가 발생한다. 그때마다 O(N)의 시간이 소요되기 때문에 `rvsFlg`를 둬서 `D` 명령이 들어올 때나, 마지막에 출력할  때 플래그 값에 따라 뒤집었는지, 안뒤집었는지에 맞게 동작하도록 했다. 이렇게 했더니 시간초과는 안뜨고 통과했다. 다만 리스트를 사용해서 요소를 지우는 `del` 함수를 사용할 때마다 O(N)이 소요된다. 따라서 O(1)인 `deque`의 `pop()` `popleft()`를 사용하는 게 더 빠르다. 그래서 deque를 써서 개선한 코드도 첨부한다.
+
+<br>
+
+## 리스트 사용
+```python
+import sys
+input = sys.stdin.readline
+t = int(input())
+
+for _ in range(t):
+    func = input().strip()
+    n = int(input())
+    if n != 0:
+        nums = list(map(int, input()[1: -2].split(',')))
+    else:
+        n = input()
+        nums = []
+
+    errFlg, rvsFlg = False, False
+
+    for cmd in func:
+        if cmd == "R":
+            rvsFlg = (False if rvsFlg else True)
+        elif cmd == "D":
+            if len(nums) != 0:
+                if rvsFlg:
+                    del nums[-1]
+                else:
+                    del nums[0]
+            else:
+                errFlg = True
+                break
+
+    if not errFlg:
+        print("["+','.join(map(str, nums[::-1]))+"]")
+        if rvsFlg else print("["+','.join(map(str, nums))+"]")
+    else:
+        print("error")
+```
+<br>
+
+## deque 사용
+```python
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+t = int(input())
+
+for _ in range(t):
+    func = input().strip()
+    n = int(input())
+    if n != 0:
+        nums = list(map(int, input()[1: -2].split(',')))
+        nums = deque(nums)
+    else:
+        n = input()
+        nums = deque()
+
+    errFlg, rvsFlg = False, False
+
+    for cmd in func:
+        if cmd == "R":
+            rvsFlg = (False if rvsFlg else True)
+        elif cmd == "D":
+            if len(nums) != 0:
+                if rvsFlg:
+                    nums.pop()
+                else:
+                    nums.popleft()
+            else:
+                errFlg = True
+                break
+
+    if not errFlg:
+        print("["+','.join(map(str, reversed(nums))) +
+              "]") if rvsFlg else print("["+','.join(map(str, nums))+"]")
+    else:
+        print("error")
+
+```
+<br>
+
+## Reference
+* <https://www.acmicpc.net/problem/5430>
