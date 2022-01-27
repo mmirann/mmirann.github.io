@@ -6,7 +6,10 @@ categories: [Algorithm/Solving]
 tags: [Implementation]
 comments: true
 ---
-![image](https://user-images.githubusercontent.com/48276682/150640243-e31e4052-5a8a-4cae-8be7-f607adfcedf3.png){: width="40%" height="40%"}
+<img src="https://user-images.githubusercontent.com/48276682/150640243-e31e4052-5a8a-4cae-8be7-f607adfcedf3.png" width="40%" height="40%" align="left">
+
+<!-- ![image](https://user-images.githubusercontent.com/48276682/150640243-e31e4052-5a8a-4cae-8be7-f607adfcedf3.png){:margin="initial !important" width="40%" height="40%" } -->
+
 
 <br>
 

@@ -3,7 +3,7 @@ layout: post
 title: "[ESP32] Esp Exception Decoder - 스택 오버플로우 디버깅"
 subtitle: ""
 categories: [IoT/Arduino]
-tags: [esp32]
+tags: [ESP32]
 comments: true
 ---
 

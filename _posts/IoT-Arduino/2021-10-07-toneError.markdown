@@ -3,7 +3,7 @@ layout: post
 title: "[Arduino] multiple definition of `__vector_7' 에러"
 subtitle: ""
 categories: [IoT/Arduino]
-tags: [arduino]
+tags: [Arduino]
 comments: true
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "[Java Script, HTML] HTML DOM Video Object 생성, 해제"
 subtitle: ""
 categories: [Study/Nodejs]
-tags: [js, javascript, HTML]
+tags: [javascript, HTML]
 comments: true
 ---
 

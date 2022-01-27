@@ -3,7 +3,7 @@ layout: post
 title: "[JS] ES6 문법 정리: 화살표 함수(Arrows)"
 subtitle: ""
 categories: [Study/Nodejs]
-tags: [js, javascript]
+tags: [javascript]
 comments: true
 ---
 
