@@ -10,7 +10,7 @@ layout: default
   site.categories[category] %}
   <li>
     <h3>
-      <a href="{{ site.baseurl }}{{ post.url }}"> {{ post.title }} </a>
+      <a href="{{  post.url | relative_url }}"> {{ post.title }} </a>
       <small>{{ post.date | date_to_string }}</small>
     </h3>
   </li>
