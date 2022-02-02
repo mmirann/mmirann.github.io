@@ -3,7 +3,7 @@ layout: post
 title: "[Node.js, Arduino] Node.js CRC-16 계산, 하드웨어 CRC-16 에러 검증"
 subtitle: ""
 categories: [Study/Nodejs]
-tags: [arduino,Nodejs]
+tags: [Arduino,Nodejs]
 comments: true
 ---
 

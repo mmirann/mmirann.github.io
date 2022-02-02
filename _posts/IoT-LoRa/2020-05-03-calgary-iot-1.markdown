@@ -3,7 +3,7 @@ layout: post
 title: "[IoT] Why Calgary Chose LoRa for its Leading Smart City Network"
 subtitle: ""
 categories: [IoT/LoRa]
-tags: [IoT,LoRa,Smart City,Calgary]
+tags: [IoT,LoRa]
 comments: true
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "[Arduino] 아두이노 동적 메모리 용량 부족 에러"
 subtitle: ""
 categories: [IoT/Arduino]
-tags: [arduino]
+tags: [Arduino]
 comments: true
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "[Arduino, Node.js] Uint8Array를 float으로, float을 uint8_t로 변환"
 subtitle: ""
 categories: [IoT/Arduino]
-tags: [arduino, Nodejs]
+tags: [Arduino, Nodejs]
 comments: true
 ---
 
