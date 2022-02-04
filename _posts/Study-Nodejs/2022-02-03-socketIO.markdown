@@ -22,6 +22,141 @@ comments: true
 웹 브라우저는 http 프로토콜을 기반으로 Request/Response로 동작하는데 실시간 통신은 불가능하다. Websocket은 웹 서버와 웹 브라우저 간 실시간 양방향 통신 환경을 제공해주는 실시간 통신 기술이다. WebSocket은 웹 브라우저만 지원하기 때문에 Socket.io 를 사용하여 웹 브라우저 지원 여부에 따라 webSocket을 사용/long polling 사용 모두 지원할 수 있다. 
 
 TCP Socket과 다른 점은 처음 접속이 http request의 handshaking 과정을 통해 이루어진다는 점이다. http request를 그대로 사용하여 기존의 80, 443 포트로 접속한다. 
+
+<br>
+
+## Socket.IO 사용법
+간단한 Client, Server 예제로 요청/응답을 주고받는 코드이다.
+
+## Client 측
+### 1. socket.io 객체 생성
+```js
+const io = require("socket.io-client");
+
+const socketClient = io("http://127.0.0.1:20111");
+```
+객체를 생성하고 연결할 서버를 설정한다. 
+### 2. 연결 이벤트 처리
+```js
+socketClient.on("connect",()=>{
+    console.log("Connect server by Socket.io");
+});
+```
+연결 이벤트가 발생했을 때 위와 같은 문구를 콘솔 창에 출력한다. 다음과 같은 이벤트를 처리할 수 있다.
+* `connect`: 연결 성공
+* `disconnect`: 연결 종료
+* `error`: 에러 발생
+* 사용자 정의 이벤트
+
+### 3. 이벤트 발생
+```js
+socketClient.emit("request",{data:"Send Request"});
+```
+`emit` 함수를 이용하여 `request` 이름과 `Send Request` 내용을 담은 이벤트를 발생시킨다. 
+
+### 4. response 이벤트 처리
+```js
+socketClient.on("response",req =>{
+    console.log(req);
+});
+```
+`response`라는 이름의 이벤트를 받았을 때 해당 이벤트의 내용을 `req`로 받아서 콘솔 창에 출력한다.
+### OUTPUT
+```
+Connect server by Socket.io
+{ data: 'Recieve Respond' }
+```
+Server 코드가 실행되면 위와 같이 서버 측에서 보낸 응답이 출력된다.
+
+<br>
+
+## Server 측
+### 1. http 서버, socket.io 객체 생성
+```js
+const http = require('http');
+const io = require("socket.io");
+
+const httpServer = new http.Server();
+const socketServer = io(httpServer);
+```
+socket.io 객체에 연결할 http 서버를 설정한다. 
+
+### 2. http 서버 구동
+```js
+httpServer.listen(20111, '127.0.0.1', () => {
+    console.log('socket server listend: ', `http://127.0.0.1:20111`);
+});
+```
+client에서 설정한 동일한 포트 번호와 경로를 설정해 socket 연결을 기다린다. 
+
+### 3. 이벤트 처리
+```js
+
+socketServer.on('connection', socket => {
+    console.log("Connect client by Socket.io");
+    
+    socket.on("request", req => {
+        console.log(req);
+        socket.emit("response", { data: "Send Respond" });
+    });
+});
+```
+client와 연결되면 `Connect client by Socket.io`를 콘솔창에 출력한다. `request` 이벤트를 받으면 해당 내용을 콘솔 창에 출력하고 잘받았다는 이벤트인 `response`를 발생시킨다. 
+
+### OUTPUT
+```
+socket server listend:  http://127.0.0.1:20111
+```
+server 코드를 실행하면 아직 client 코드를 실행하지 않았으므로 위와 같이 listen을 실행한 코드만 출력된다.
+
+```
+Connect client by Socket.io
+{ data: 'Send Request' }
+```
+client코드를 실행하면 위와 같이 수신한 이벤트를 처리한 코드가 출력된다. 
+
+<br>
+
+## client.js 전체 코드
+```js
+const io = require("socket.io-client");
+
+const socketClient = io("http://127.0.0.1:20111");
+
+socketClient.on("connect",()=>{
+    console.log("Connect server by Socket.io");
+});
+
+socketClient.emit("request",{data:"Send Request"});
+
+socketClient.on("response",req =>{
+    console.log(req);
+});
+```
+## server.js 전체 코드
+```js
+const http = require('http');
+const io = require("socket.io");
+
+const httpServer = new http.Server();
+const socketServer = io(httpServer);
+
+httpServer.listen(20111, '127.0.0.1', () => {
+    console.log('socket server listend: ', `http://127.0.0.1:20111`);
+});
+
+socketServer.on('connection', socket => {
+    console.log("Connect client by Socket.io");
+    
+    socket.on("request", req => {
+        console.log(req);
+        socket.emit("response", { data: "Recieve Respond" });
+    });
+});
+
+```
+
+
 <br>
 
 ## Reference
