@@ -32,11 +32,13 @@ Access to XMLHttpRequest at 'http://127.0.0.1:20111/socket.io/?EIO=4&transport=p
 ```
 통신 환경을 구축하고, 간단한 메세지를 전송하려고 하니 위와 같은 에러가 떴다. 구글링해보니 **SOP(Same-Origin Policy)** 라고 동일한 port, http, host의 자원에만 접근을 허용하기 때문에 **CORS(Cross-Origin Resource Sharing)** policy가 작동하여 지정된 도메인 외부에 있는 자원에 대한 접근을 통제하는 브라우저 메커니즘이 작동한 것으로 보였다. 기본 `transports`는 모든 서버에서의 접근을 허용하지 않으므로 다음과 같이 `transports`를 설정하니 에러가 해결되었다.
 ```js
+// client-side
 var socket = io('http://localhost:<your_port_number>', 
                 {transports: ['websocket', 'polling']});
 ```
 하지만 위와 같이 설정하면 모든 서버로부터 접근이 허용되므로 안전하지 않다. 특정 서버의 접근만 허용하기 위해선 다음과같이 접근을 허용할 주소를 cors에 넣어 활성화한다.
 ```js
+//server-side
 const io = require("socket.io")(httpServer, {
   cors: {
     origin: "https://example.com",
