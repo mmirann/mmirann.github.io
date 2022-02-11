@@ -25,6 +25,66 @@ TCP Socket과 다른 점은 처음 접속이 http request의 handshaking 과정�
 
 <br>
 
+## Socket.IO Function
+### `socket.emit(eventName[, ...args][, ack])`
+
+* eventName의 이벤트를 발생시킨다. args에 전달하고자 하는 데이터를 포함한다. 
+
+```js
+socket.emit("ferret", "tobi", (data) => {
+  console.log(data); // data will be "woot"
+});
+
+// server:
+//  io.on("connection", (socket) => {
+//    socket.on("ferret", (name, fn) => {
+//      fn("woot");
+//    });
+//  });
+```
+
+### `socket.send([...args][, ack])`
+
+* `emit`과의 차이점은 `eventName`이 없다는 것이다. `eventName`은 `message`로 고정되어 `emit("message",[..args])와 같은 역할을 한다. 
+
+### `socket.on(eventName, callback)`
+
+* `emit`으로 발생시킨 `eventName`의 이벤트 핸들러를 등록한다. 
+
+```js
+socket.on("news", (data) => {
+  console.log(data);
+});
+
+// with multiple arguments
+socket.on("news", (arg1, arg2, arg3, arg4) => {
+  // ...
+});
+// with callback
+socket.on("news", (cb) => {
+  cb(0);
+});
+```
+
+### `socket.once(eventName, callback)`
+* `eventName`의 일회성 이벤트 핸들러이다. 다음에 한번 더 `eventName` 이벤트가 트리거되면 이 리스너가 제거된 다음 호출된다.
+```js
+socket.once("my-event", () => {
+  // ...
+});
+```
+
+### `socket.onAny(callback)`
+
+* `eventName`과 상관없이 포괄적으로 이벤트를 수신한다. 모든 이벤트가 수신될 때마다 작동한다. 아래 코드와 같이 `event`에 수신한 이벤트의 `eventName`이 할당되고, `args`에 수신한 이벤트의 데이터가 할당된다. `webSocket`의 `onMessage`와 같은 역할을 한다.
+```js
+socket.onAny((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+<br>
+
 ## Socket.IO 사용법
 간단한 Client, Server 예제로 요청/응답을 주고받는 코드이다.
 
