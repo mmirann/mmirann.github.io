@@ -1,0 +1,119 @@
+---
+layout: post
+title: "[알고리즘] 백준 18111번 마인크래프트 파이썬"
+subtitle: ""
+categories: [Algorithm/Solving]
+tags: [Implementation]
+comments: true
+use_math: true
+---
+
+<img src="https://user-images.githubusercontent.com/48276682/150640243-e31e4052-5a8a-4cae-8be7-f607adfcedf3.png" width="40%" height="40%" align="left">
+
+## 📌 문제
+
+<https://www.acmicpc.net/problem/18111>
+
+<br>
+
+## 📝 풀이
+
+높이가 256이라는 크지 않은 수로 제한되어 있었기 때문에 브루트포스로 풀어야겠다고 생각했다. 처음에 문제를 제대로 못봐서 제거한 블록을 인벤토리에 다시 넣는다는 조건을 못봐서 조금 헤맸다. 전체 블럭을 0~256까지의 높이로 만드는 시간을 다 구해서 그 중 최소 시간을 구하는 $O(N^3)$ 방식으로 풀었다. 다만 `python3`로 제출하면 시간초과가 났고 `pypy3`로 제출해야 통과가 되었다.
+
+시간복잡도 $O(N^2)$으로 풀면 `python3`로 제출해도 통과할 것 같아서 풀이를 생각해보다가 DFS, BFS 문제들과는 달리 블록의 위치가 문제 풀이에 사용되지 않았기 때문에 입력받을 때 해당 높이의 블록의 갯수를 세서 딕셔너리에 저장하는 방법을 생각했다. 그렇게 하면 0~256의 높이로 만들 때 딕셔너리만 탐색하면 되기 때문에 `python3`로 제출해도 시간초과가 나지 않았다. 개선한 풀이는 다음과 같다.
+
+<br>
+
+## 파이썬 코드
+
+```python
+import sys
+input = sys.stdin.readline
+
+N, M, B = map(int, input().split())  # B: 인벤토리에 있는 블록 갯수
+heights = {}
+
+minH = 0
+maxH = 257
+for _ in range(N):
+    temp = list(map(int, input().split()))
+    # 해당 높이의 블록 갯수 count
+    for i in temp:
+        heights[i] = heights.get(i, 0)+1
+
+resultSec = float('inf')
+resultH = 0
+
+for h in range(257):
+    minus, plus = 0, 0
+    for block in heights:
+        if block < h:  # 블록 빼기
+            minus += (h - block) * heights[block]
+        elif h < block:  # 블록 쌓기
+            plus += (block - h) * heights[block]
+    leftBlock = B + plus  # 뺀 블록을 포함해 인벤토리에 남은 블록
+    if leftBlock < minus:  # 인벤토리에 있는 블록보다 쌓아야할 블록이 많은 경우
+        continue
+    time = 2 * large + small
+
+    if time <= resultSec:  # 높이가 가장 큰 값으로 갱신
+        resultH = h
+        resultSec = time
+
+print(resultSec, end=" ")
+print(resultH)
+
+```
+
+<br>
+<details>
+<summary><b>$O(N^3)$ 코드 </b></summary>
+<div markdown="1">
+
+```python
+import sys
+input = sys.stdin.readline
+
+# 1. 블록 제거 -> 2초
+
+# 2. 블록 쌓기 -> 1초
+
+N, M, B = map(int, input().split()) # B: 인벤토리에 있는 블록 갯수
+graph = []
+for \_ in range(N):
+graph.append(list(map(int, input().split())))
+
+resultSec = float('inf')
+resultH = 0
+
+for h in range(257):
+small, plus = 0, 0
+for i in range(N):
+for j in range(M):
+if graph[i][j] < h: # 작으면 블록 쌓기
+minus += h - graph[i][j]
+elif graph[i][j] > h: # 크면 블록 빼기
+plus += graph[i][j] - h
+
+    leftBlock = B + plus  # 뺀 블록이 추가됨
+    if leftBlock < minus:
+        continue
+    time = 2 * plus + minus
+
+    if time <= resultSec:
+        resultH = h
+        resultSec = time
+
+print(resultSec, end=" ")
+print(resultH)
+
+```
+
+</div>
+</details>
+
+<br>
+
+## Reference
+
+- <https://www.acmicpc.net/problem/18111>
