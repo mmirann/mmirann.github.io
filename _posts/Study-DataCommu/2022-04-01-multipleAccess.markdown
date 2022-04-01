@@ -40,20 +40,14 @@ comments: true
 
 <br>
 
-
-  ![image](http://www.beyondthegeek.com/wp-content/uploads/2017/09/fdma.gif){: width="70%" height="70%"}  
   
 ### FDMA(Frequency Division Multiple Access)
 - 각각의 사용자 신호를 서로 다른 작은 주파수대역(부채널)에 실어보내는 방식
 - 인접 채널 간 간섭이 생길 수 있으므로 보호대역(Guard Band)이 필수적임  
- 
-  ![image](http://www.ktword.co.kr/img_data/1378_1.jpg){: width="70%" height="70%"}
 - 주파수 이용 효율에 한계가 있어 사용자 수가 제한됨
 - 효울성이 낮아 더 이상 사용되지 않음
 
-<br>
-
-## TDMA(Time Division Multiple Access)
+### TDMA(Time Division Multiple Access)
 - 각각의 사용자 신호를 서로 다른 시간슬롯에 할당하여 실어보내는 방식
 - 보통 TDMA는 오로지 시간 만으로 다른 사용자를 구분하기 보다, FDMA처럼 일단 주파수로 구분하고 동일 주파수대역에서 시간으로 나누어 다중접속
 - 2세대 이동통신 GSM 방식에서 사용
